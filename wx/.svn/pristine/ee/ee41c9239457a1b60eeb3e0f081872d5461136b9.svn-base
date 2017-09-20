@@ -1,0 +1,21 @@
+<view class="weui-cells__title" style="background:#fff;font-size:20px;text-align:center">{{showInfo?'暂无信息':''}}</view>
+
+<!--text.wxml-->
+<view class="grid">
+  <view class="weui-panel_bg">
+    <view class="weui-media-box" wx:for="{{bill}}" wx:key="title" wx:for-index="index" id="{{item.rwid}}" bindtap="bindDetail" data-sm="{{item.sm}}">
+      <view>
+        <view style="width:30%;color:#b2b2b2;font-size:11pt;dispaly:block;float:left;margin-top:5px;" data-sm="{{item.sm}}">{{item.tksj}} </view>
+        <view class="flex-wrp" style="flex-direction:column" data-sm="{{item.sm}}">
+          <view class="flex-wrp" style="height:25px;flex-direction:row;" data-sm="{{item.sm}}">
+            <view style="font-size:14pt;color:#35353;" data-sm="{{item.sm}}">{{item.tkje}}元</view>
+            <view style="font-size:11pt;color:#ff7a00;margin-top:5px;margin-left:40px;" data-sm="{{item.sm}}">{{item.zt == '0'?'退款中':(item.zt == '1'?'退款成功':'退款失败')}}
+            </view>
+          </view>
+
+          <text style="line-height:18px;color:#888;font-size:11pt;margin-top:5px;" data-sm="{{item.sm}}">{{item.tksm==null?"":item.tksm}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

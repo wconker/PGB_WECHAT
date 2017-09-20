@@ -1,0 +1,112 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+    <view class="weui-cells__title">求职信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">姓名</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindinput="xmBindblur" value="{{records.xm}}" placeholder="请输入姓名" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">联系手机</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindinput="lxsjBindblur" value="{{records.lxsj}}" type="digit" placeholder="请输入联系手机" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">联系邮箱</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindinput="lxyxBindblur" value="{{records.lxyx}}" placeholder="请输入联系邮箱" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input" bindtap="bindSelectM" id="records.gw" data-bt="求职岗位" data-options="{{gwLists}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">求职岗位</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view style="display:block;float:left;padding-right:10px;">{{records.gw=="!!!"?'':records.gw}}</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input" bindtap="bindSelectS" id="records.gzxz" data-bt="工作性质" data-options="{{gzxzLists}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">工作性质</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view style="display:block;float:left;">{{records.gzxz=="!!!"?'':records.gzxz}}</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_select" bindtap="choseCity">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">工作地点</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-cell weui-cell_input" data-bt="{{item.bt}}" data-options="{{item.xxlist}}" data-item="{{item}}" id="{{index}}">
+            {{citys.dqmc=="!!!"?'':citys.dqmc}}
+            <view class="weui-cell__bd">
+              <view style="display:block;float:left;">{{item.sjxz}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input" bindtap="bindSelectM" id="records.yyzg" data-bt="已有资格" data-options="{{qzzwLists}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">已有资格</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view style="display:block;float:left;padding-right:10px;">{{records.yyzg=="!!!"?'':records.yyzg}}</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input" bindtap="bindSelectS" id="records.xl" data-bt="学历" data-options="{{xlLists}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">学历</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view style="display:block;float:left;">{{records.lx=="!!!"?'':records.xl}}</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">工作经验</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindinput="gzjyBindblur" value="{{records.gzjy}}" placeholder="请输入工作经验" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">薪酬要求</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindinput="xcyqBindblur" value="{{records.xcyq}}" placeholder="请输入薪酬要求" />
+        </view>
+      </view>
+
+    </view>
+    <view class="weui-cells__title">备注信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" bindinput="bzBindblur" value="{{records.bz}}" placeholder="" style="height: 3.3em" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area" style="margin:10px 0px;">
+    <button class="weui-btn" type="primary" bindtap="bindOk">确定</button>
+    <button class="weui-btn" type="warn" bindtap="bindCancel">撤回</button>
+  </view>
+</view>

@@ -1,0 +1,54 @@
+<form bindsubmit="bindOk" report-submit="true">
+  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+      <view class="weui-cells__title">标的物信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <!-- <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">查勘类别</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindZblbChange" value="{{zblbIndex}}" range="{{zblbs}}" range-key="name">
+              <view class="weui-select weui-select_in-select-after">{{zblbs[zblbIndex].name}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">标的物</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="bdwBindblur" value="{{bdw}}" placeholder="请输入标的物信息" />
+          </view>
+        </view> -->
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">查勘表</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindKcbmbChange" value="{{kcbmbIndex}}" range="{{kcbmbs}}" range-key="MBMC">
+              <view class="weui-select weui-select_in-select-after" style="font-size:10pt;">{{kcbmbs[kcbmbIndex].MBMC}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <!-- <view class="weui-cells__title">备注信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea class="weui-textarea" bindinput="xxsmBindblur" placeholder="请输入查勘交待信息" style="height: 3.3em" />
+          </view>
+        </view>
+      </view> -->
+    </view>
+    <view class="example">
+      <button class="seePic" bindtap="seeExample">表格示例图</button>
+      <view class="tenement" wx:if="{{ckbt==1}}"><image src="../../../images/add.png"></image></view>
+      <view class="apartment" wx:if="{{ckbt==2}}"><image src="../../../images/admin.png"></image></view>
+    </view>
+    <view class="btn_buttom" style="margin-top:15px">
+      <button class="weui-btn" type="primary" formType="submit">确定</button>
+    </view>
+  </view>
+</form>

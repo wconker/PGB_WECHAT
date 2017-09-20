@@ -1,0 +1,21 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-panel__hd">求职信息</view>
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_text" wx:for="{{records}}" wx:key="title" bindtap="bindDetailTap" id="{{item.rcid}}">
+        <view class="weui-media-box__title list-title-yyxj weui-media-box__title_in-text">{{item.gw}}</view>
+        <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.bz!=''}}">{{item.bz}}</view>
+        <view class="weui-media-box__info">
+          <view class="weui-media-box__info__meta list-blue-yyxj" style="margin-left:0px;">{{item.xm}}</view>
+          <view class="weui-media-box__info__meta deepgray">{{item.fbsj}}</view>
+          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra list-orangebg-yyxj">{{item.gzxz?item.gzxz:'不限'}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="oper">
+    <view>
+      <button size="normal" type="primary" class="button" bindtap="bindNew">我要求职</button>
+    </view>
+  </view>
+</view>

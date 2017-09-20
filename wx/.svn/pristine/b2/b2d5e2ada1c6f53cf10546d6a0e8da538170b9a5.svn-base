@@ -1,0 +1,332 @@
+/*招标详情*/
+var WxNotificationCenter = require("../../../utils/WxNotificationCenter.js");//广播添加完成
+Page({
+  data: {
+    files: [],
+    info: {},
+    zbid: 0,
+    fromPage: '',
+    hidden: true,
+    nocancel: true,
+    fkyj: '',
+    title: '',
+    isSale: false,
+    isSaleShow: false,
+    zk: '100',
+    form_id: '',
+    showBtn: true
+  },
+
+  previewImage: function (e) {
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: this.data.files // 需要预览的图片http链接列表
+    })
+  },
+
+  bindTb: function () {
+    //判断是否认证，引导去认证
+    if (getApp().data.user.scrzbz != 2) {
+      wx.showModal({
+        title: '提示',
+        content: '实名认证后才可报价，是否前往认证?',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/mine/auth/certification/certification'
+            })
+          }
+        }
+      });
+      return;
+    }
+
+    if (getApp().data.user.fdcgjsbz != 2 && getApp().data.user.tdgjsbz != 2 && getApp().data.user.zcpgsbz != 2) {
+      wx.showModal({
+        title: '提示',
+        content: '只有估价师才可以报价，是否前往认证?',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/mine/auth/fcpgs_auth/fcpgs_auth'
+            })
+          }
+        }
+      });
+      return;
+    }
+    var pageUrl;
+    pageUrl = '/pages/task/answer/answer?zbid=' + this.data.zbid;
+    wx.navigateTo({
+      url: pageUrl
+    })
+  },
+
+  lookTable: function (res) {
+    var sCmd = { "cmd": "business.download_zb_file", "data": { "zbid": this.data.zbid, } };
+    WxNotificationCenter.postNotificationName("send", sCmd);
+  },
+
+  getUserinfo: function (res) {
+    switch (res.data.code) {
+      case 0:
+        getApp().data.user = res.data.data[0];
+        break;
+      default:
+        wx.showToast({
+          title: res.data.message,
+          icon: 'success',
+          duration: 1500
+        })
+        break;
+    }
+  },
+
+  onLoad: function (e) {
+    console.log(e);
+    //did by maodan(如果是自己点进自己的招标详情，该界面不显示“我要投标按钮”)
+    console.log("e", e.fromPage, e.fromPage == "myZbInfo")
+    if (e.fromPage == "myZbInfo") {
+      console.log('maodan')
+      this.setData({
+        showBtn: false
+      });
+      console.log("maodan", this.data.showBtn)
+    }
+    //-------
+    this.setData({ fromPage: e.fromPage })
+    this.setData({ zbid: e.zbid })
+    //看是不是能取到user的全局
+    console.log("wkhe", getApp().data.user.scrzbz == 'undefined');
+    if (getApp().data.user.scrzbz = 'undefined') {
+      WxNotificationCenter.addNotification("user.getUserinfo", this.getUserinfo, this);
+      var sCmd = { "cmd": "user.getUserinfo", "data": {} };
+      WxNotificationCenter.postNotificationName("send", sCmd);
+    }
+    var vTmp
+    if (this.data.fromPage == 'myZbInfo') {
+      vTmp = 'getMyZbInfo'
+    } else {
+      vTmp = 'getZbInfo'
+    }
+    var sCmd = { "cmd": "business." + vTmp, "data": { "zbid": e.zbid } };
+    wx.showToast({
+      title: '详情加载中',
+      icon: 'loading',
+      duration: 10000
+    })
+    WxNotificationCenter.postNotificationName("send", sCmd);
+  },
+
+  switchChange: function (e) {
+    this.setData({ isSale: e.detail.value })
+  },
+
+  onShow: function () {
+    WxNotificationCenter.addNotification("business.getZbInfo", this.getZbInfo, this)
+    WxNotificationCenter.addNotification("business.getMyZbInfo", this.getMyZbInfo, this)
+    WxNotificationCenter.addNotification("business.download_zb_file", this.download_zb_file, this)
+    WxNotificationCenter.addNotification("business.Confirm_kcbg", this.Confirm_kcbg, this)
+  },
+
+  onHide: function () {
+    WxNotificationCenter.removeNotification("business.getZbInfo", this)
+    WxNotificationCenter.removeNotification("business.getMyZbInfo", this)
+    WxNotificationCenter.removeNotification("business.download_zb_file", this)
+    WxNotificationCenter.removeNotification("business.Confirm_kcbg", this)
+  },
+
+  onUnload: function () {
+    WxNotificationCenter.removeNotification("business.getZbInfo", this)
+    WxNotificationCenter.removeNotification("business.getMyZbInfo", this)
+    WxNotificationCenter.removeNotification("business.download_zb_file", this)
+    WxNotificationCenter.removeNotification("business.Confirm_kcbg", this)
+  },
+
+  getZbInfo: function (res) {
+    console.log("maodan2222", res)
+    setTimeout(function () {
+      wx.hideToast()
+    }, 500)
+    switch (res.data.code) {
+      case 0:
+        this.setData({ info: res.data.data[0] })
+        console.log("maodan1111", this.data.info);
+        this.data.files.length = 0
+        for (var item in res.data.data[0].fj_img) {
+          this.setData({ files: this.data.files.concat(res.data.data[0].fj_img[item].img_url) })
+        }
+        break;
+      default:
+        wx.showToast({
+          title: res.data.message,
+          icon: 'warn',
+          duration: 3000
+        })
+        break;
+    }
+  },
+
+  getMyZbInfo: function (res) {
+    setTimeout(function () {
+      wx.hideToast()
+    }, 500)
+    switch (res.data.code) {
+      case 0:
+        this.setData({ info: res.data.data[0] })
+        this.data.files.length = 0
+        for (var item in res.data.data[0].fj_img) {
+          this.setData({ files: this.data.files.concat(res.data.data[0].fj_img[item].img_url) })
+        }
+        break;
+      default:
+        wx.showToast({
+          title: res.data.message,
+          icon: 'warn',
+          duration: 3000
+        })
+        break;
+    }
+  },
+
+  download_zb_file: function (res) {
+    switch (res.data.code) {
+      case 0:
+        wx.downloadFile({
+          url: res.data.data.file_url, //仅为示例，并非真实的资源
+          success: function (res) {
+            console.log(res.tempFilePath)
+            wx.openDocument({
+              filePath: res.tempFilePath,
+              success: function (res) {
+                wx.showToast({
+                  title: "打开文档成功",
+                  icon: 'warn',
+                  duration: 2000
+                })
+              }, fail: function (res) {
+                wx.showToast({
+                  title: "打开文档失败",
+                  icon: 'warn',
+                  duration: 2000
+                })
+              }
+            })
+          }
+        })
+        break;
+      default:
+        wx.showToast({
+          title: res.data.message,
+          icon: 'success',
+          duration: 3000
+        })
+        break;
+    }
+
+  },
+  cancel: function () {
+    this.setData({
+      hidden: true
+    });
+  },
+
+  //conke 这个是点击提交后的在有一步提交的东西
+  confirm: function () {
+    this.setData({
+      nocancel: !this.data.nocancel,
+      hidden: true
+    });
+    if (this.data.zk == '') {
+      this.setData({ zk: 100 })
+    }
+    var zkValue = this.data.zk / 100
+    if (zkValue >= 0.5 && zkValue <= 1) {
+      if (this.data.title == "是否确认查勘报告？") {
+        var sCmd = { "cmd": "business.Confirm_kcbg", "data": { "zbid": this.data.zbid, "ysjg": 1, "fkyj": this.data.fkyj, "zk": zkValue } };
+      } else {
+        var sCmd = { "cmd": "business.Confirm_kcbg", "data": { "zbid": this.data.zbid, "ysjg": -1, "fkyj": this.data.fkyj } };
+      }
+      WxNotificationCenter.postNotificationName("send", sCmd);
+    } else {
+      wx.showToast({
+        title: '折扣必须在50%到100%之间',
+        icon: 'success',
+        duration: 2000
+      })
+    }
+
+
+    console.log("clicked confirm");
+  },
+
+  bindPj: function (e) {
+    wx.navigateTo({
+      url: '/pages/core/assessment/assessment?zbid=' + this.data.info.zbid + "&fromPage=tbPerson",
+      success: function (res) {
+        // success
+      },
+      fail: function () {
+        // fail
+      },
+      complete: function () {
+        // complete
+      }
+    })
+  },
+
+  bindYes: function (e) {
+    this.setData({ title: "是否确认查勘报告？" })
+    this.setData({ hidden: false, nocancel: false, isSaleShow: true, form_id: e.detail.formId })
+    // var sCmd = { "cmd": "business.Confirm_kcbg", "data": { "zbid": this.data.zbid, "ysjg": 1 } };
+    // WxNotificationCenter.postNotificationName("send", sCmd);
+    // wx.navigateBack({
+    //   delta: 2,
+    // });
+  },
+
+  bindNo: function (e) {
+    this.setData({ title: "是否退回查勘报告？" })
+    this.setData({ hidden: false, nocancel: false, isSaleShow: false, form_id: e.detail.formId })
+
+  },
+  zkBindblur: function (e) {
+    this.setData({ zk: e.detail.value })
+  },
+
+  Confirm_kcbg: function (res) {
+    switch (res.data.code) {
+      case 0:
+        // var vTmp
+        // if (this.data.fromPage == 'myZbInfo') {
+        //   vTmp = 'getMyZbInfo'
+        // } else {
+        //   vTmp = 'getZbInfo'
+        // }
+        // var sCmd = {
+        //   "cmd": "business." + vTmp,
+        //   "data": {
+        //     "zbid": this.data.zbid,
+        //     "form_id": this.data.form_id
+        //   }
+        // };
+        // WxNotificationCenter.postNotificationName("send", sCmd);
+        wx.navigateBack({
+          delta:2
+        })
+        break;
+      default:
+        wx.showToast({
+          title: res.data.message,
+          icon: 'success',
+          duration: 3000
+        })
+        break;
+    }
+  },
+
+  fkyjBindblur: function (e) {
+    this.setData({ fkyj: e.detail.value })
+  }
+
+});

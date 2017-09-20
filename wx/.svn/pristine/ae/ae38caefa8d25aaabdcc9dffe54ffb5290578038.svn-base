@@ -1,0 +1,225 @@
+<view class="weui-navbar navbar_yyxj">
+  <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+      <view class="weui-navbar__title">{{item}}</view>
+    </view>
+  </block>
+  <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+</view>
+<view class="weui-tab__panel">
+  <view class="weui-tab__content" hidden="{{activeIndex != 0}}" style="background:#FFFFFF">
+    <view scroll-y="true" style="height: {{sHeight}}px;" bindscrolltolower="loadMore" bindscrolltoupper="refresh" id="0">
+      <view class="weui-cells__title">正在询价的信息
+            <view style="float:right;color:#ff7a00">{{local}}
+          <view style="color:#888;float:right;"  bindtap="changeCity">[切换]</view>
+        </view>
+      </view>
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text" bindtap="bindDetail" wx:for="{{xjList}}" wx:key="xjid" id="{{item.xjid}}">
+            <view wx:if="{{item.zt>0}}">
+              <view class="weui-media-box__title weui-media-box__title_in-textold">
+                {{item.xjbdw}}
+              </view>
+              <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.bz!=''}}">
+                {{item.bz}}
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.wylx}}</view>
+                <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.xjfw}}</view>
+                <view class="weui-media-box__info__meta list-graybg-yyxj">{{item.ztms}}</view>
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta_yyxj list-reward-line-yyxj" wx:if="{{item.bc>0}}">
+                  <image class="redbag" src="/images/graybag.png"></image>
+                  <span class=" list-reward-yyxj" style="color:#b2b2b2;">¥{{item.bc}} × {{item.jsbjtj}}条</span> 
+                </view>
+
+                <!--<view class="weui-media-box__info__meta_yyxj list-reward-line-yyxj" wx:if="{{item.jj>0}}">
+                            <image class="redbag" src="/images/graybag.png"></image>
+                            <span class="list-reward-yyxj " style="color:#b2b2b2;">加价：¥{{item.jj}}</span>      
+                          </view>-->
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta shallowgray">{{item.xjsj}}</view>
+               
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra_yy shallowgray">阅读次数：{{item.ydcs}}</view>
+              </view>
+            </view>
+            <view wx:else>
+              <view class="weui-media-box__title weui-media-box__title_in-text{{item.new}}">
+                {{item.xjbdw}}
+              </view>
+              <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.bz!=''}}">
+                {{item.bz}}
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.wylx}}</view>
+                <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.xjfw=="对内"?'对我':'我'}}</view>
+                <view class="weui-media-box__info__meta list-orangebg-yyxj" >{{item.ztms}}</view>
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta_yyxj list-reward-line-yyxj" wx:if="{{item.bc>0}}">
+                  <image class="redbag" src="/images/redbag.png"></image>
+                  <span class=" list-reward-yyxj">¥{{item.bc}} × {{item.jsbjtj}}条</span> 
+                </view>
+
+                <!--<view class="weui-media-box__info__meta_yyxj list-reward-line-yyxj" wx:if="{{item.jj>0}}">
+                            <image class="redbag" src="/images/redbag.png"></image>
+                            <span class="list-reward-yyxj">加价：¥{{item.jj}}</span>      
+                          </view>-->
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta deepgray" style="font-size:10pt;">{{item.xjsj}}</view>
+                <view class="weui-media-box__info__meta deepgray" style="font-size:10pt;">阅读次数：{{item.ydcs}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+<view class="weui-panel__ft" style="clear:both;" bindtap="getMoreInfo">
+          <view class="weui-cell weui-cell_access weui-cell_link">
+            <view class="weui-cell__bd">查看更多</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+          </view>
+        </view>
+      <view class="space"></view>
+    </view>
+  </view>
+  <view class="weui-tab__content" hidden="{{activeIndex != 1}}" style="background:#FFFFFF">
+    <view scroll-y="true" style="height: {{sHeight}}px;" bindscrolltolower="loadMore" bindscrolltoupper="refresh" id="1">
+      <view class="weui-cells__title">我的询价记录</view>
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text" wx:for="{{myxjList}}" wx:key="title" style="clear:both;">
+            <view bindtap="bindMyDetail" id="{{item.xjid}}">
+              <view class="weui-media-box__title weui-media-box__title_in-text" style="clear:both;">
+                {{item.xjbdw}}
+              </view>
+              <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.bz!=''}}">
+                {{item.bz}}
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.wylx}}</view>
+                <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.xjfw}}</view>
+                <view class="weui-media-box__info__meta list-orangebg-yyxj" style="color:#fff;">{{item.ztms}}</view>
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta_yyxj list-reward-line-yyxj" wx:if="{{item.bc>0}}">
+                  <image class="redbag" src="/images/redbag.png"></image>
+                  <span class=" list-reward-yyxj">¥{{item.bc}} × {{item.jsbjtj}}条</span> 
+                </view>
+
+                <!--<view class="weui-media-box__info__meta_yyxj list-reward-line-yyxj" wx:if="{{item.jj>0}}">
+                  <image class="redbag" src="/images/redbag.png"></image>
+                  <span class="list-reward-yyxj">加价：¥{{item.jj}}</span>      
+                </view>-->
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta shallowgray">{{item.xjsj}}</view>
+                <view class="weui-media-box__info__meta weui-media-box__info__meta_extra_yy shallowgray">阅读次数：{{item.ydcs}}</view>
+              </view>
+              <view class="weui-cells__title_yyxj">
+                报价信息
+                <label wx:if="{{item.bjinfo.length==0}}">：无</label>
+              </view>
+            </view>
+            <view class="weui-cells_after-title" wx:for="{{item.bjinfo}}" wx:key="bjid" wx:for-item="bjitem">
+              <navigator url="/pages/ask/answerdetail/answerdetail?bjid={{bjitem.bjid}}&fromPage=myXjList" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd" style="font-size:14px;">{{bjitem.nc}}: {{bjitem.zj}}万元</view>
+
+                <!--<view class="weui-cell__ft" wx:if="{{bjitem.cnbz==1}}">
+                  <icon type="success" size="25"></icon>
+                </view>
+                <view class="weui-cell__ft" wx:if="{{bjitem.cnbz==-1}}">
+                  <icon type="cancel" size="25"></icon>
+                </view>-->
+                <view class="weui-cell__ft" style="font-size:14px;margin-left:15px;">¥{{bjitem.bc}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </navigator>
+            </view>
+            <view>{{test}}</view>
+            <view style="width:100%;margin-top:10px;" wx:if="{{item.zt==3||item.zt==1 || item.zt==0 || item.zt==-1|| item.zt==-2}}">
+              <view style="height:40px;float:left;">
+                <button style="width:60px;height:25px;padding:0px;line-height:25px;display:block;float:left;margin-right:10px;" type="default" size="mini" data-select="{{index}}" bindtap="bindRepost" id="{{item.xjid}}" wx:if="{{item.zt==3||(item.zt==0&&item.bjinfo.length==0)||item.zt==-2||item.zt==-1}}">重新询价</button>
+                <button type="warn" size="mini" bindtap="bindEndXj" id="{{item.xjid}}" wx:if="{{item.zt==0}}" style="width:60px;height:25px;padding:0px;line-height:25px;display:block;float:left;">终止询价</button>
+              </view>
+              <view style="float:right;">
+                <button class="weui-btn mini-btn" type="primary" size="mini" bindtap="bindCloseXj" id="{{item.xjid}}" wx:if="{{item.zt==1}}" style="width:30px;height:25px;padding:0px;line-height:25px;display:block;float:right;">结案</button>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-panel__ft" style="clear:both;" bindtap="getMoreInfo">
+          <view class="weui-cell weui-cell_access weui-cell_link">
+            <view class="weui-cell__bd">查看更多</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+          </view>
+        </view>
+        <view class="space"></view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-tab__content" hidden="{{activeIndex != 2}}" style="background:#FFFFFF">
+    <view scroll-y="true" style="height: {{sHeight}}px;" bindscrolltolower="loadMore" bindscrolltoupper="refresh" id="2">
+      <view class="weui-cells__title">我的报价记录</view>
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text" wx:for="{{mybjList}}" wx:key="title">
+            <view class="weui-media-box__title weui-media-box__title_in-text " id="{{item.xjid}}" bindtap="bindDetail">
+              {{item.xjbdw}}
+            </view>
+            <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.bz!=''}}">
+              {{item.bz}}
+            </view>
+            <view id="{{item.bjid}}" bindtap="bindAnswerDetail">
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta" style="color:#576b95;font-size:11pt;line-height:24px;">单价：{{item.dj}}元/㎡</view>
+                <view class="weui-media-box__info__meta" style="color:#ff7a00;font-size:11pt;line-height:24px; font-weight:bold;background-color:#ffffcc;padding-left:1em;margin-left:5px;margin-right:10px;">总价：{{item.zj}}万元</view>
+
+                <!--<view class="weui-media-box__info__meta" style="color:#e64340;font-size:11pt;line-height:24px; font-weight:bold;">{{item.cnbz==0?"未采纳":"已采纳"}}</view>-->
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta list-orangebg-yyxj" >{{item.ztms}}</view>
+                <view class="weui-media-box__info__meta_black list-reward-line-yyxj" style="margin-left:10px;">
+                  <image class="redbag" src="/images/redbag.png"></image>
+                  <span class="list-reward-yyxj">¥{{item.bc}}</span> 
+                </view>
+                <view class="weui-media-box__info__meta list-blue-yyxj" style="margin-left:0;">
+                  <image class="redbag" wx:if="{{item.wylx=='住宅'}}" src="/images/building.png" style="margin-right:5px;"></image>
+                  <image class="redbag" wx:if="{{item.wylx=='办公'}}" src="/images/office.png" style="margin-right:5px;"></image>
+                  <image class="redbag" wx:if="{{item.wylx=='商业'}}" src="/images/trade.png" style="margin-right:5px;"></image>
+                  <image class="redbag" wx:if="{{item.wylx=='综合'}}" src="/images/complex.png" style="margin-right:5px;"></image>
+                  <image class="redbag" wx:if="{{item.wylx=='土地'}}" src="/images/land.png" style="margin-right:5px;"></image>
+                  <image class="redbag" wx:if="{{item.wylx=='机电'}}" src="/images/electro.png" style="margin-right:5px;"></image>
+                  <image class="redbag" wx:if="{{item.wylx=='汽车'}}" src="/images/car.png" style="margin-right:5px;"></image>
+                  {{item.wylx}}询价
+                </view>
+
+                <!--<view class="weui-media-box__info__meta list-blue-yyxj">{{item.fwxm}}</view>-->
+                <view class="weui-cell__ft" wx:if="{{item.lhflag==1}}">
+                  <image style="redbag" style="width:40px;height:35px" src="/images/cry.png"></image>
+                </view>
+              </view>
+              <view class="weui-media-box__info shallowgray">
+                <view class="weui-media-box__info__meta">{{item.bjsj}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-panel__ft" style="clear:both;" bindtap="getMoreInfo">
+          <view class="weui-cell weui-cell_access weui-cell_link">
+            <view class="weui-cell__bd">查看更多</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+          </view>
+        </view>
+        <view class="space"></view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="oper" style="display:block;border:0;height:auto;background:transparent;">
+  <view style="display:block;float:right;margin-right:20px;">
+    <button type="primary" class="weui-btn mini-btn" bindtap="bindNew" style="width:60px;height:60px;margin-bottom:20px;line-height:24px;font-size:14pt;padding:5px;background:#ff7a00;">发起询价</button>
+  </view>
+</view>

@@ -1,0 +1,43 @@
+page{
+    background: #ebebeb;
+}
+#header{
+    width:100%;
+    height:180px;
+    background: #fff;
+}
+#header .content{
+    padding-top:6px;
+    padding-bottom:360px;
+    text-align: center;
+}
+#header .content image{
+    width:600rpx;
+    height:300rpx;
+}
+.oper{
+  display:flex;
+  flex-direction: row;
+  background: #fff;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  border-top: 0.5px solid #ebebeb; 
+  padding: 5rpx;
+}
+
+button{
+    width: 720rpx;
+}
+.weui-input {
+  height: 2.58823529em;
+  min-height: 2.58823529em;
+  line-height: 2.58823529em;
+  word-wrap: break-word;
+}
+
+.btn_buttom{
+margin-top: 15px
+
+}

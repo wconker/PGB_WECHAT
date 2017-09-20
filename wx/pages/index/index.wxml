@@ -1,0 +1,69 @@
+
+<!--index.wxml-->
+<swiper style="{{height}}" 
+indicator-dots="{{indicatorDots}}" 
+autoplay="{{autoplay}}" interval="{{interval}}"
+ duration="{{duration}}">
+  <block wx:key="title" wx:for="{{imgUrls}}">
+    <swiper-item>
+      <navigator url="{{item.link}}" hover-class="navigator-hover">
+        <image src="{{item.url}}" style="{{height}}" class="slide-image"/>
+      </navigator>
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class="page" style="background:#f2f2f2">
+  <view class="page__bd">
+    <view class="weui-grids" >
+      <block wx:for-items="{{x_menus}}"  wx:key="{{title}}">
+        <view style="background:#FFF" class="weui-grid" hover-class="weui-grid_active" bindtap="bindMenuTap" id="{{item.title}}">
+          <image class="weui-grid__icon indexIcon" style="width:25px;height:25px;" src="{{item.icon}}"/>
+          <view class="weui-grid__label">{{item.title}}</view>
+        </view>
+      </block>
+    </view>
+    <!--
+    <view class="page__bd">
+      <view class="group">
+        <image src="/images/toutiao.png" class="group-image"></image>
+        <block>
+          <view class="toutiao" wx:for="{{toutiao}}" wx:key="title">
+            <view class="toutiao-item">
+              <text>{{item.title}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    -->
+    <!-- <view id="menus">
+      <view class="weui-panel__hd" style="color:#ff7a00;font-size:11pt;">行业资讯 <view bindtap="new_more" style="float:right">......</view></view>
+      <view class="content" wx:for="{{news}}" wx:key="title" bindtap="bindNewsTap" id="{{item.id}}">
+        <view class="view">
+          <text>{{item.title}}</text>
+        </view>
+        <view class="right">
+          <text>{{item.fbsj}}</text>
+        </view>
+      </view>
+    </view> -->
+  </view>
+</view>
+
+<!--conker-->
+
+<modal hidden="{{hidden}}" title="提示" confirm-text="同意并继续" cancel-text ="查看协议"  bindcancel="canel"   bindconfirm="confirm"  text="" style="background:#ff0000;">
+<view style="width:100%; margin-top: 11px;font-size:9pt;">
+  <view style="color:gray; text-align: center;">·使用本平台前需认真阅读并同意</view>
+  <view style="color:blue; text-align: center;" bindtap="agree"> 《评估帮软件许可及服务协议》</view>
+</view>
+</modal>
+
+
+
+<modal hidden="{{hidden_rz}}"  title="活动通知" confirm-text="去认证" cancel-text ="再看看"  bindcancel="canel_rz"   bindconfirm="confirm_rz"  text=""  width="100px" style="">
+<view style="width:100%;text-align:center ">
+ <image src="{{hdimg}}" style="width:{{img__width}}; height:{{img__height}}; "></image>
+</view>
+</modal>

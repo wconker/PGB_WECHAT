@@ -1,0 +1,118 @@
+
+#menus{
+    background: #ffffff;
+    margin-top:10px;
+    height:auto;
+    width:100%;
+}
+#menus .content{
+    height:70px;
+  border-bottom: 1rpx solid #E5E5E5;
+  margin-left:30rpx;
+}
+
+#menus .content .view{
+    float: left;
+    /*width: 560rpx;*/
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#menus .content .view text{
+    font-size:15px;
+    line-height:30px;
+    padding-left:0px;
+}
+#menus .content .right{
+    height: 30px;
+    float: right;
+    margin-right:10px;
+    line-height: 30px;
+    color: gray;
+    font-size: 13px;
+}
+
+.title{
+    font-size:17px;
+}
+
+/**text.wxss**/
+.textmargin {
+  float: left;
+}
+
+.news-avatar {
+  width: 130rpx;
+  height: 130rpx;
+  margin: 5rpx;
+  border-radius: 10%;
+  float: left;
+}
+
+#wordscard text {
+  font-size: .8em;
+}
+
+.rowalign {
+    flex-direction: row;
+    float: left;
+}
+.rowalign text {
+  padding-left: 10rpx;
+}
+
+.card, #wordscard {
+    background: #fff;
+    margin: 20rpx 14px;
+    padding: 20px 32rpx;
+    border-radius: 2%;
+}
+
+.card {
+    background: #fff;
+}
+.short-card {
+    height: 250rpx;
+}
+
+.card button {
+    width: 400rpx;
+    margin-top: 30px;
+    margin-bottom: 25rpx;
+    /*margin: 10rpx 75rpx;*/
+}
+
+#wordscard {
+    height: 130px;
+}
+
+page, view {
+    font-family: arial,'pingfang sc',stheiti,"microsoft yahei",sans-serif
+}
+page {
+    background: #e0e0e0;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-bottom: 20rpx;
+    padding-top: 20rpx;
+}
+
+.tag {
+    font-weight: 200;
+    font-size: .8em;
+    padding-bottom: 30rpx;
+    padding-top: 30rpx;
+    color: #666666;
+    font-weight:bold;
+}
+.weui-text-font{
+    font-size:14px;
+}
+
+.weui-panel_bg {
+  background-color: #FFFFFF;
+  margin-top: 10px;
+}

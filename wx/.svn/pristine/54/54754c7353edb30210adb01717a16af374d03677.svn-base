@@ -1,0 +1,47 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+    <view class="weui-cells__title">标的物信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">招标类别</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.cklb_name}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">标的物</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.ckdz}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">备注信息</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.bz}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">查勘日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.ckrq}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="weui-btn-area" style="margin: 0 auto;padding: 8px;">
+    <button class="weui-btn" type="default" bindtap="bindckb">查勘表填写</button>
+  </view>
+  <view class="weui-btn-area" style="margin: 0 auto;padding: 8px 8px 0px 8px;">
+    <button class="weui-btn" type="primary" bindtap="submit">提交</button>
+  </view>
+</view>

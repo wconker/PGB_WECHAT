@@ -1,0 +1,33 @@
+<view style="background:#fff">
+  <view class="weui-cells__title">我的查勘记录</view>
+  <view class="weui-panel weui-panel_access">
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_text" wx:for="{{ckbList}}" wx:key="zbid">
+      <view bindtap="bindCkbDetail" id="{{item.id}}">
+        <view class="weui-media-box__title weui-media-box__title_in-text list-title-yyxj">
+          {{item.ckdz}}
+        </view>
+        <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.xxsm!=''}}">
+          {{item.bz}}
+        </view>
+        <view class="weui-media-box__info">
+          <view class="weui-media-box__info__meta_yyxj list-orangebg-yyxj">{{item.cklb_name}}</view>
+        </view>
+        </view>
+        <view class="weui-media-box__info">
+          <view class="weui-media-box__info__meta deepgray" style="margin-left:0px;font-size:10pt;">{{item.ckrq}}</view>
+          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra gray" style="line-height:24px;color:#888888;font-size:10pt" bindtap="sendTask" id="{{item.id}}" wx-if="{{item.send_flag != 0}}">发送附件至邮箱</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="oper" style="display:block;border:0;height:auto; background:transparent;">
+  <view style="width:60px;display:block;float:right;margin-right:20px;margin-bottom:20px;">
+    <button size="mini" type="primary" bindtap="bindNew" style="width:60px;height:60px;line-height:24px; display:block;padding:5px;font-size:14pt;">新增查勘</button>
+  </view>
+</view>
+<modal hidden="{{hidden}}" title="发送附件至邮箱" confirm-text="发送" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}" text="" style="background:#ff0000;">
+  <input type="text" placeholder="请输入邮箱地址" value="{{email}}" style="border-color: #bbbbbb; border-style: solid; border-top-width: 0px;border-right-width: 0px; border-bottom-width: 1px;border-left-width: 0px;font-size:20px;color:#353535" bindinput="bindinput"
+  />
+</modal>

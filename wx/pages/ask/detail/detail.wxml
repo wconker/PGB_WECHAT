@@ -1,0 +1,94 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+    <view class="weui-cells__title">询价标的物信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">询价类别</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.wylx}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">所在城市</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.szscmc}}</view>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="weui-uploader">
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title">附件</view>
+              <view class="weui-uploader__info">{{files.length==0?'无附件':files.length}}</view>
+            </view>
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <block wx:for="{{files}}" wx:key="{{index}}">
+                  <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">标的物</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.xjbdw}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">内部询价人</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>
+            <block wx:for="{{info.nb_list}}" wx:key="{{index}}">
+              {{item[0].xm}}
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">备注信息</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.bz}}</view>
+        </view>
+      </view>
+
+      <!--<view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">询价方案</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.fwxm}}</view>
+        </view>
+      </view>-->
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">报酬</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view wx:if="{{info.xdbc>0}}">{{info.xdbc}}元</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="btn_buttom" wx:if="{{info.zt==0&&fromPage=='XjList'}}">
+    <button class="weui-btn" type="primary" bindtap="bindBj">我要报价</button>
+  </view>
+  <view class="btn_buttom" wx:if="{{info.zt==0&&fromPage=='myXjList'&&info.bjinfo.length==0}}">
+    <button class="weui-btn" type="primary" bindtap="bindRepost">重新发布</button>
+  </view>
+</view>

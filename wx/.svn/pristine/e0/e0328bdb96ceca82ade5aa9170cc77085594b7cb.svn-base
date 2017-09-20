@@ -1,0 +1,285 @@
+<view id="header">
+  <view class="content">
+    <image src="{{files}}" bindtap="bindimage"></image>
+    <view class="nickname">{{user.nc}}</view>
+    <view class="orther">{{userInfo.title}}</view>
+
+    <!--<view>
+      <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+    </view>-->
+  </view>
+</view>
+<view id="section">
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item" bindtap="bill">
+      <view class="menus_title">
+        <text>账户余额</text>
+      </view>
+      <view class="menus_value">
+        <text>{{userInfo.zhye}}元</text>
+      </view>
+    </view>
+    <view class="flex-item two_side" bindtap="gobindmoney">
+      <view class="menus_title">
+        <text>收入账户余额</text>
+      </view>
+      <view class="menus_value">
+        <text>{{userInfo.srzhye}}元</text>
+      </view>
+    </view>
+    <view class="flex-item" ><!--bindtap="getbill"-->
+      <view class="menus_title">
+        <text>用户积分</text>
+      </view>
+      <view class="menus_value">
+        <text>{{userInfo.jf}}分</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view id="section">
+  <view class="flex-wrp" style="flex-direction:row;">
+    <!--<view class="flex-item menus_title" bindtap="bindMenuTap" id="充值">
+      <view>
+        <image src='/images/icon_recharge.png' class="icon"></image>
+      </view>
+      <view class="menus_title">
+        <text>充值</text>
+      </view>
+<<<<<<< .mine
+    </view>-->
+
+     <view class="flex-item menus_title" bindtap="bindMenuTap" id="设置">
+      <view>
+        <image src='/images/icon_set.png' class="icon"></image>
+      </view>
+      <view class="menus_title">
+        <text>设置</text>
+      </view>
+    </view>
+    <view class="flex-item menus_title two_side" bindtap="bindMenuTap" id="提现">
+      <view>
+        <image src='/images/icon_cash.png' class="icon"></image>
+      </view>
+      <view class="menus_title">
+        <text>提现</text>
+      </view>
+    </view>
+    <view class="flex-item menus_title " bindtap="bindMenuTap" id="客服">
+      <view>
+        <contact-button type="default-light" size="18" session-from="weapp" style="background:#ff7a00;border-radius:50%;padding:3px;margin:5px">
+        </contact-button>
+      </view>
+      <view class="menus_title">
+        <text>联系客服</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view id="menus">
+  <view class="content" id="smrz" bindtap="tofastauth">
+    <view class="view">
+      <text>快速认证</text>
+    </view>
+    <view class="view" style="color:red" wx:if="{{userInfo.scrzbz == -1}}">
+      <text>{{userInfo.smrzyj}}</text>
+    </view>
+    <view class="right">
+
+      <!--<block wx:if="{{userInfo.scrzbz < 1}}">
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+     </block>-->
+    </view>
+  </view>
+  <view class="content" id="smrz" bindtap="tocerTap">
+    <view class="view">
+      <text>实名认证</text>
+    </view>
+    <view class="view" style="color:red" wx:if="{{userInfo.scrzbz == -1}}">
+      <text>{{userInfo.smrzyj}}</text>
+    </view>
+    <view class="right">
+      <view class="weui-cell__ft" wx:if="{{userInfo.scrzbz==1}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="waiting" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{userInfo.scrzbz==2}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{userInfo.scrzbz==-1}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="cancel" size="25"></icon>
+      </view>
+      <block wx:if="{{userInfo.scrzbz < 1}}">
+        <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+      </block>
+    </view>
+  </view>
+  <view class="content" bindtap="tofcpgsTap">
+    <view class="view">
+      <text>房地产估价师认证</text>
+    </view>
+    <view class="view" style="color:red" wx:if="{{userInfo.fdcgjsbz == -1}}">
+      <text>{{userInfo.fgrzyj}}</text>
+    </view>
+    <view class="right">
+      <view class="weui-cell__ft" wx:if="{{userInfo.fdcgjsbz==2}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{userInfo.fdcgjsbz==1}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="waiting" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{userInfo.fdcgjsbz==-1}}" style="float:left; margin-top:10px;    margin-right:20px;">
+        <icon type="cancel" size="25"></icon>
+      </view>
+      <block wx:if="{{userInfo.fdcgjsbz < 1}}">
+        <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+      </block>
+    </view>
+  </view>
+  <view class="content" bindtap="totdpgsTap">
+    <view class="view">
+      <text>土地估价师认证</text>
+    </view>
+    <view class="view" style="color:red" wx:if="{{userInfo.tdgjsbz == -1}}">
+      <text>{{userInfo.tgrzyj}}</text>
+    </view>
+    <view class="right">
+      <view class="weui-cell__ft" wx:if="{{userInfo.tdgjsbz==2}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{userInfo.tdgjsbz==1}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="waiting" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{userInfo.tdgjsbz==-1}}" style="float:left; margin-top:10px;    margin-right:20px;">
+        <icon type="cancel" size="25"></icon>
+      </view>
+      <block wx:if="{{userInfo.tdgjsbz < 1}}">
+        <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+      </block>
+    </view>
+  </view>
+
+  <!--<view class="content" bindtap="tozcpgsTap">
+    <view class="view">
+      <text>资产评估师认证</text>
+    </view>
+    <view class="right">
+      <view class="weui-cell__ft" wx:if="{{zcgjsbz==1}}" style="float:left; margin-top:10px;    margin-top:5px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft"  wx:if="{{zcgjsbz==0}}" style="float:left; margin-top:10px;    margin-top:5px; ">
+        <icon type="cancel" size="25"></icon>
+      </view>
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>-->
+</view>
+<view id="menus">
+
+  <!--<view class="content" bindtap="gobindmoney">
+    <view class="view">
+      <text>资金流水</text>
+    </view>
+    <view class="right">
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>-->
+  <view class="content" bindtap="gobindphone">
+    <view class="view">
+      <text>手机号码:{{user.sjhm}}</text>
+    </view>
+    <view class="right">
+      <view class="weui-cell__ft" wx:if="{{user.sjhmbdbz==1}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{user.sjhmbdbz==-1}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="warn" size="25"></icon>
+      </view>
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+  <view class="content" bindtap="gobindemail">
+    <view class="view">
+      <text>电子邮箱:{{user.dzyx}}</text>
+    </view>
+    <view class="right">
+      <view class="weui-cell__ft" wx:if="{{user.dzyxjhbz==1}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{user.dzyxjhbz==-1}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="warn" size="25"></icon>
+      </view>
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+  <view class="content" bindtap="gobindgsmc">
+    <view class="view" style="white-space: nowrap; width:250px ">
+      <text style=" ">公司名称:{{gsmc}}</text>
+    </view>
+    <view class="right">
+      <view class="weui-cell__ft" wx:if="{{user.gsmcbdbz==1}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{user.gsmcbdbz==-1}}" style="float:left; margin-top:10px;    margin-right:20px; ">
+        <icon type="warn" size="25"></icon>
+      </view>
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+  <view class="content" bindtap="aaplytome">
+    <view class="view">
+      <text>我的同事</text>
+      <span class="weui-badge" wx:if="{{user.sq_num>0&&user.adminflag==1}}" style=" margin-left:20px; " size="25">{{user.sq_num}}</span> 
+    </view>
+    <view class="right">
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+
+  <!--<view class="content" bindtap="share">
+    <view class="view">
+      <text>分享给好友</text>
+    </view>
+    <view class="right">
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>-->
+
+</view>
+
+<view id="menus">
+  <view class="content" bindtap="bindUserAgree">
+    <view class="view">
+      <text>用户协议</text>
+    </view>
+    <view class="right">
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+</view>
+
+<view id="menus" wx:if="{{user.adminSign==1}}">
+  <view class="content"  bindtap="gomanager">
+    <view class="view">
+      <text>审核管理</text>
+    </view>
+    <view class="right">
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+  <view class="content" bindtap="adminMgmt">
+    <view class="view">
+      <text>数据管理</text>
+    </view>
+    <view class="right">
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+  <view class="content" bindtap="map">
+    <view class="view">
+      <text>评估师分布</text>
+    </view>
+    <view class="right">
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,17 @@
+.showPosition{
+  position:fixed;
+  bottom:20rpx;
+  right:0;
+  z-index:100;
+  overflow: hidden;
+}
+.showPosition span{
+  float:left;
+  font-size:40rpx;
+  font-weight:600;
+  margin-top:12rpx;
+}
+
+.page__bd{
+   float:left;
+}

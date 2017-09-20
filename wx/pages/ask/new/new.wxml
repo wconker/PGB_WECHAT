@@ -1,0 +1,210 @@
+<form bindsubmit="bindOk" report-submit="true">
+  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+      <view class="weui-cells__title">询价标的物信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">物业类型</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindWylxChange" value="{{wylxIndex}}" range="{{wylxs}}" range-key="name">
+              <view class="weui-select weui-select_in-select-after">{{wylxs[wylxIndex].name}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">{{wylxs[wylxIndex].fjts}}附件上传</view>
+                <view class="weui-uploader__info">{{files.length}}</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files" id="uploaderFiles">
+                  <block wx:for-items="{{files}}" wx:key="{{index}}">
+                    <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                      <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                    </view>
+                  </block>
+                </view>
+                <view class="weui-uploader__input-box">
+                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">标的物</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindblur="xjbdwBindblur" value="{{xjbdw}}" placeholder="请输入标的物信息" />
+          </view>
+
+        </view>
+        <button style="background:transition;border:none;width:140px;margin-bottom:5px;" bindtap="mapSearch">地图搜索</button>
+      
+        <view class="weui-cell weui-cell_input" wx:if="{{wylxs[wylxIndex].dlmc!=null&&wylxs[wylxIndex].dlmc!='资产'}}">
+          <view class="weui-cell__hd">
+            <view class="weui-label">标的物面积</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="jzmjBindblur" value="{{jzmj}}" type="digit" placeholder="请输入面积" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_select" bindtap="choseCity">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">所在城市</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-cell weui-cell_input" bindtap="bindSelectS" data-bt="{{item.bt}}" data-options="{{item.xxlist}}" data-item="{{item}}" id="{{index}}" style="padding-left:0px;">
+              {{citys.dqmc}}
+              <view class="weui-cell__bd">
+                <view style="display:block;float:left;">{{item.sjxz}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cells__title">备注信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea class="weui-textarea" bindblur="bzBindblur" disabled="{{isSearchVisible?true:false}}" placeholder="{{isSearchVisible?' ':wylxs[wylxIndex].bzts}}" style="height: 3.3em" value="{{isSearchVisible?' ':bz}}" />
+          </view>
+        </view>
+      </view>
+      <view class="weui-cells__title">询价规则设置</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">询价方式</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindXjlbChange" value="{{xjlbIndex}}" range="{{xjlbs}}">
+              <view class="weui-select weui-select_in-select-after">{{xjlbs[xjlbIndex]}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <!--<view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">询价方案</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker bindchange="bindXjfaChange" value="{{xjfaIndex}}" range="{{xjfas}}" range-key="fwxm">
+            <view class="weui-select weui-select_in-select-after" style="padding-left:0px;">{{xjfas[xjfaIndex].fwxm}}</view>
+          </picker>
+        </view>
+      </view>-->
+        <view wx:if="{{xjlbs[xjlbIndex]=='内部询价'}}" class="weui-cell weui-cell_select" bindtap="gogroup">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">分发至</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-cell weui-cell_input" data-bt="{{item.bt}}" data-options="{{item.xxlist}}" data-item="{{item}}" id="{{index}}" style="padding-left:0;">
+              <block wx:for="{{group}}" wx:key="{{index}}">
+                {{item.xm}},
+
+              </block>
+              <view class="weui-cell__bd">
+                <view style="display:block;float:left;"></view>
+                <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">单条报酬</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindchange="bindBcChange" type="digit" value="{{bc}}" placeholder="请输入单条报酬(元)" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">需求人数</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindchange="bindYxbjsChange" type="number" value="{{yxbjs}}" placeholder="请输入需求报价人数" />
+          </view>
+        </view>
+
+        <!--<view class="weui-cell weui-cell_input weui-cell_vcode">
+        <view class="weui-cell__hd">
+          <view class="weui-label">报酬(元)</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" disabled="true" placeholder="" value="{{bc}}" />
+        </view>
+        <view class="weui-cell__jj">
+          <picker bindchange="bindJjChange" value="{{jjIndex}}" range="{{jjs}}" range-key="name">
+            <view class="weui-select weui-select_in-select-after">{{jjs[jjIndex].name}}</view>
+          </picker>
+        </view>
+      </view>-->
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">有效时间</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindYxsjChange" value="{{yxsjIndex}}" range="{{yxsjs}}" range-key="name">
+              <view class="weui-select weui-select_in-select-after">{{yxsjs[yxsjIndex].name}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_select" style="display:none">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">账户类型</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindZhlxChange" value="{{zhlxIndex}}" range="{{zhlxjs}}" range-key="name">
+              <view class="weui-select weui-select_in-select-after">{{zhlxjs[zhlxIndex].name}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="btn_buttom">
+      <button class="weui-btn" disabled="{{enable}}" type="primary" formType="submit">确定</button>
+    </view>
+  </view>
+</form>
+
+<!-- 遮罩层 -->
+<view class="cover" animation='{{ coverAlphaAnim }}' hidden='{{ !isSearchVisible }}' bindtap='bindCoverTap' hover='false' overflow='hidden' bindtouchmove="handletouchmove" style="overflow:hidden"></view>
+
+<!-- 搜索框以及下面的已搜索选项 -->
+<view class="search-wrapper" hidden='{{ !isSearchVisible }}'>
+
+  <!-- 过滤选项 -->
+  <view class="filter-list-wrapper">
+
+    <!-- list -->
+    <view style="width:100%">
+      <text style="margin:0 auto;font-weight: 400;font-size: 18px;">询价信息确认</text>
+      <text class="textInfo">物业类型: {{wylxs[wylxIndex].name}}</text>
+      <text class="textInfo">标的物: {{xjbdw}}</text>
+      <text class="textInfo">所在城市: {{citys.dqmc}}</text>
+      <text class="textInfo" wx:if="{{wylxs[wylxIndex].dlmc!=null&&wylxs[wylxIndex].dlmc!='资产'}}">标的物面积: {{jzmj}}</text>
+      <text class="textInfo" style="margin-top:8px">付款方式: {{xjlbs[xjlbIndex]}}</text>
+      <text class="textInfo">单条报酬: {{bc}}</text>
+      <text class="textInfo">需求人数: {{yxbjs}}</text>
+      <text class="textInfo">内部询价人:  <block wx:for="{{group}}" wx:key="{{index}}">
+               <text> {{item.xm}}</text>
+      </block>
+      </text>
+      <text class="textInfo">有效时间: {{yxsjs[yxsjIndex].name}}</text>
+      <text class="textInfo" style="color:ff7a00;font-size:15pt">总计:{{yxbjs}}*{{bc}}={{yxbjs*bc}}元</text>
+    </view>
+  </view>
+  <view class="weui-dialog__ft">
+    <view class="weui-dialog__btn weui-dialog__btn_default" style="width:50%;text-align:center;display:block;float:left;border-right:solid 1px #D5D5D6; " bindtap="dialogCancel">取消</view>
+    <view class="weui-dialog__btn weui-dialog__btn_primary" style="width:50%;text-align:center;display:block;float:right;" bindtap="dialogConfirm">确认</view>
+  </view>
+</view>

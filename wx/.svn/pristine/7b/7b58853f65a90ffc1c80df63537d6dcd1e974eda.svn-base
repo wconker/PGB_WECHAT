@@ -1,0 +1,61 @@
+var WxNotificationCenter = require("../../../utils/WxNotificationCenter.js");//广播添加完成
+Page({
+  data: {
+    comp: [],
+    searchtext: '',
+  },
+  onLoad: function (options) {
+    // 生命周期函数--监听页面加载
+
+
+  },
+  onShow: function () {
+    WxNotificationCenter.addNotification("user.getPggsList", this.getPggsList, this)
+  },
+
+  onHide: function () {
+    WxNotificationCenter.removeNotification("user.getPggsList", this)
+  },
+  onUnload: function () {
+    WxNotificationCenter.removeNotification("user.getPggsList", this)
+  },
+  selectitem: function (e) {
+    getApp().data.jgmc = e.target.id;
+    getApp().data.comp = e.target.dataset.dqmc;
+    wx.navigateBack({
+      delta: 1, // 回退前 delta(默认为1) 页面
+    })
+  },
+  filterworld: function (e) {
+    var me = this;
+    var sCmd = { "cmd": "user.getPggsList", "data": { "gsmc": e.detail.value } };
+    WxNotificationCenter.postNotificationName("send", sCmd);
+  },
+
+  delettext: function () {
+    var arr = this.data.comp;
+    this.setData({
+      searchtext: "",
+    })
+  },
+
+  //获取评估公司
+  getPggsList: function (res) {
+    switch (res.data.code) {
+      case 0:
+        this.setData({
+          comp: res.data.data
+        })
+        break;
+      default:
+        wx.showToast({
+          title: res.data.message,
+          icon: 'fail',
+          duration: 2000
+        })
+        break;
+    }
+
+
+  }
+})

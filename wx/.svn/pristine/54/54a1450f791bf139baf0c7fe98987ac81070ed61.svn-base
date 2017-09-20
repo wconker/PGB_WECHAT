@@ -1,0 +1,159 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+    <view class="weui-cells__title">标的物信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">招标类别</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.zblb_name}}</view>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="weui-uploader">
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title">招标附件</view>
+              <view class="weui-uploader__info">{{files.length==0?'无附件':files.length}}</view>
+            </view>
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <block wx:for-items="{{files}}" wx:key="{{index}}">
+                  <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">标的物</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.bdw}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">所在城市</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.szcsmc}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_select" wx:if="{{fromPage!='myZbInfo'}}">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">查勘表</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.kcbmbmc}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">备注信息</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.xxsm}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__title">招标规则设置</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">招标范围</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.nbzb}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">内部招标人员</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>
+            <block wx:for="{{info.nb_list}}" wx:key="{{index}}">
+              {{item[0].xm}}
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">有效时间</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.zbyxsjtime}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">报酬(元)</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.bc}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">要求完成日期</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.bgjzsj}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="lookTable" wx:if="{{fromPage=='myZbInfo'&&item.zt==3}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">勘察表</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>已提交</view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+    </view>
+  </view>
+
+  <!--<view class="btn_buttom" wx:if="{{fromPage!='myZbInfo'}}">-->
+
+  <!--<view class="btn_buttom" wx:if="{{fromPage!='myZbInfo'&&fromPage!=''}}">-->
+  <view class="btn_buttom" wx:if="{{info.zt==0}}" wx:if="{{showBtn}}">
+    <button class="weui-btn" type="primary" bindtap="bindTb">我要投标</button>
+  </view>
+
+  <!-- <view class="btn_buttom" >
+    <button class="weui-btn" type="primary" bindtap="bindPj">评价</button>
+  </view> -->
+  <!--wx:if="{{info.zt==4&&fromPage=='tbPerson'&&info.dzbrpj==''}}"-->
+  <block wx:if="{{fromPage=='myZbInfo' && (info.zt == 3)}}">
+    <view style="margin-top:10px">
+      <form bindsubmit="bindYes" report-submit="true">
+        <button class="weui-btn" type="primary" formType="submit">确认查勘报告</button>
+      </form>
+      <form bindsubmit="bindNo" report-submit="true">
+        <button class="weui-btn" type="warn" formType="submit" style="margin-top:8px">退回查勘报告</button>
+      </form>
+    </view>
+  </block>
+  <view style="height:30px">
+  </view>
+  <modal hidden="{{hidden}}" title="{{title}}" confirm-text="提交" cancel-text="取消" bindcancel="cancel"
+   bindconfirm="confirm" no-cancel="{{nocancel}}" text="" style="background:#ff0000;">
+    <textarea style="width:280px;height:150px;border:solid 1px;margin-left:0px;" bindinput="fkyjBindblur" />
+    <view class="weui-cell" wx-if="{{info.bgjzzt==1&&isSaleShow}}">
+      <view style="font-size:18px;color:#353535;width:90%;font-weight:bold">超时打折处理</view>
+      <switch bindchange="switchChange" />
+    </view>
+    <view wx-if="{{isSale}}">
+      <input class="weui-input" bindinput="zkBindblur" type="number" value="{{zk}}" placeholder="请输入折扣50%~100%" style="border-color: #bbbbbb; border-style: solid; border-top-width: 0px;border-right-width: 0px; border-bottom-width: 1px;border-left-width: 0px;font-size:20px;color:#353535"
+      />
+    </view>
+  </modal>
+</view>

@@ -1,0 +1,4 @@
+page{
+    line-height: 1.0;
+    background: #ebebeb;
+}

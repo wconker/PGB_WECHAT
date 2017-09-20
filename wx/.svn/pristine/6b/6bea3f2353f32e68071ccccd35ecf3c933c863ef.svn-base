@@ -1,0 +1,27 @@
+<view class="weui-search-bar" id="searchBar">
+  <form class="weui-search-bar__form">
+    <view class="weui-search-bar__box">
+      <input type="text" class="weui-search-bar__input" bindinput="filterworld" value="{{searchtext}}" id="searchInput" placeholder="专线搜索" required/>
+      <a href="javascript:" class="weui-icon-clear" id="searchClear"></a> 
+    </view>
+  </form>
+  <a href="javascript:" class="weui-search-bar__cancel-btn" style="font-size:11pt" id="searchCancel" wx:if="{{index>1&&index<6}}" bindtap="up">上一级</a> 
+  <a href="javascript:" class="weui-search-bar__cancel-btn" style="font-size:11pt" id="searchCancel" bindtap="delettext">取消</a> 
+</view>
+<view class="weui-panel">
+  <view class="weui-panel__bd">
+    <view class="weui-media-box weui-media-box_text"  bindtap="go">
+      <view class="weui-media-box__title">{{data.gsmc}}</view>
+      <p class="weui-media-box__desc">杭州→{{data.mddmc}}</p>
+      <p></p>
+      <p class="weui-media-box__desc">{{data.zblx}}</p>
+        <view class="weui-media-box__info">
+      
+      </view>
+      <view class="weui-media-box__info">
+        <text class="weui-media-box__info__meta">电话：{{data.lxsj}}</text>
+        <text class="weui-media-box__info__meta weui-media-box__info__meta_extra">联系人:{{data.fzr}}</text>
+      </view>
+    </view>
+  </view>
+</view>

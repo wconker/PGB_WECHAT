@@ -1,0 +1,17 @@
+
+<view class="weui-search-bar" id="searchBar">
+  <form class="weui-search-bar__form">
+    <view class="weui-search-bar__box" >
+      <input type="text" class="weui-search-bar__input" bindinput="filterworld"  value="{{searchtext}}" id="searchInput" placeholder="搜索" required/>
+      <a href="javascript:" class="weui-icon-clear" id="searchClear"></a> 
+    </view>
+  </form>
+  <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel" bindtap="delettext">取消</a> 
+</view>
+<form class="weui-search-bar__form">
+  <block wx:for="{{comp}}" wx:key="index">
+    <view bindtap="bindTap" class="weui-cell weui-cell_access" hover-class="weui-cell_active" id="{{index}}">
+      <view class="weui-cell__bd" bindtap="selectitem" data-dqmc="{{item}}" id="{{item.jgmc}}">{{index+1}}、{{item.jgmc}}</view>
+    </view>
+  </block>
+</form>

@@ -1,0 +1,24 @@
+<view id="menus">
+   <!--<view class="content" id="xgmm" bindtap="person">
+        <view class="view"><text>个人信息</text></view>
+        <view class="right"><image src="/images/rightjian.png" style="width:14px;height:14px"></image></view>
+    </view>
+     <view class="content">
+        <view class="view"><text>分享给好友</text></view>
+        <view class="right"><image src="/images/rightjian.png" style="width:14px;height:14px"></image></view>
+    </view>
+   
+     <view class="content">
+        <view class="view"><text>检查版本</text></view>
+        <view class="right"><image src="/images/rightjian.png" style="width:14px;height:14px"></image></view>
+    </view>-->
+    <view class="content">
+        <view class="view" style="font-size:15px;"><text>新消息提示音</text></view>
+        <view class="right"><switch checked bindchange="switchChange" checked="{{isChecked}}"/></view>
+    </view>
+    <view class="content" bindtap="cleanSpace">
+        <view class="view"><text>清理小程序存储空间</text></view>
+        <view class="right"><image src="/images/rightjian.png" style="width:14px;height:14px"></image></view>
+    </view>
+</view>
+

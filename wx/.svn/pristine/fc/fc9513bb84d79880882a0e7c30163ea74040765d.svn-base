@@ -1,0 +1,23 @@
+Page({
+    data: {
+
+        searchworld: ''
+
+    },
+    onLoad: function (options) {
+
+    },
+    setworld: function (e) {
+        this.setData({
+            searchworld: e.detail.value
+        })
+    },
+    search: function () {
+
+        wx.navigateTo({
+            url: "/pages/tool/Info/info?key="+this.data.searchworld,
+
+        })
+
+    }
+})

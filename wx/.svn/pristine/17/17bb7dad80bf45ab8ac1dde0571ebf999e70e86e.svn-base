@@ -1,0 +1,24 @@
+<view id="main">
+    <view class="title">
+       {{news.title}}
+    </view>
+    <view class="numbers">
+       <text>{{news.fbsj}}</text>
+       <text>阅读量: {{news.readtimes}}</text>
+    </view>
+    <view class="content">
+          <text>
+          {{news.content}}
+          </text>
+    </view>
+    <view class="comments_list">
+    </view>
+</view>
+<!--
+<view id="comments">
+    <view class="input">
+          <input class="text" type="text" placeholder="写点什么吧"/>
+          <button type="default" class="submit">发表评论</button>
+    </view>
+</view>
+-->

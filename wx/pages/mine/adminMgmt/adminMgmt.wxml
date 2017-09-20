@@ -1,0 +1,136 @@
+<form bindsubmit="bindOk" report-submit="true">
+  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+      <view class="weui-cells__title">平台金额信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">平台收益</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.ptsy}}元</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">用户提现余额</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.yhtxje}}元</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">用户充值金额</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.yhczje}}元</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">用户充值账户余额</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.yhzhje}}元</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">用户收入账户余额</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.yhsrzhje}}元</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">差额</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.ce}}元</view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cells__title">用户信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">活跃用户数</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.hyyh}}人</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">累计用户数</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.ljyh}}人</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">房地产评估师人数</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.fdcgjs}}人</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">土地评估师人数</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.tdgjs}}人</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">公司入驻个数</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.gsrzs}}个</view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cells__title">24小时交易数据</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">询价量</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.xjs}}个</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">报价量</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.bjs}}个</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">招标量</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.zbs}}个</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label-title">投标量</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-label text_right">{{userInfo.tbs}}个</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</form>

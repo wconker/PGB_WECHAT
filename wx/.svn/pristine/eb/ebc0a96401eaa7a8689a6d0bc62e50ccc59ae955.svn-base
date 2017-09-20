@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "退款详情",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "backgroundColor":"#e0e0e0"
+}

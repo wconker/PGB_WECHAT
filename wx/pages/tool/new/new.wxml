@@ -1,0 +1,45 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+    <view class="weui-cells__title">查勘记录表</view>
+    <view class="weui-cells weui-cells_after-title">
+     <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">物业类型</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindWylxChange" value="{{wylxIndex}}" range="{{wylxs}}" range-key="name">
+              <view class="weui-select weui-select_in-select-after">{{wylxs[wylxIndex].name}}</view>
+            </picker>
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">物业地址</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindinput="wydzBindblur" value="{{records.wydz}}" placeholder="请输入物业地址" />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">查勘表模板</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" bindinput="lxyxBindblur" value="{{records.lxyx}}" placeholder="请输入联系邮箱" />
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__title">备注信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" bindinput="bzBindblur" value="{{records.bz}}" placeholder="" style="height: 3.3em" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area" style="margin:10px 0px;">
+    <button class="weui-btn" type="primary" bindtap="bindOk">确定</button>
+  </view>
+</view>

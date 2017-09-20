@@ -1,0 +1,54 @@
+<view class="weui-navbar navbar_yyxj ">
+  <block wx:for-items="{{tabs}}" wx:key="{{index}}" style="margin-buttom:20px">
+    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+      <view class="weui-navbar__title">{{item}}</view>
+
+      <!--<view class="weui-badge" style="margin-left: 5px;">8</view>-->
+    </view>
+  </block>
+  <view class="weui-navbar__slider" style="width:125px;left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+</view>
+<view wx:if="{{show==1}}" style="margin-left:3px;margin-top:60px">
+  <view id="menus" wx:for="{{plist}}" wx:key="{{index}}">
+    <view class="content" data-select="{{item}}" data-in="{{index}}" bindtap="bindOk">
+      <view class="view">
+        <image src="{{item.tx_img}}" class="image"></image>
+        <text>{{item.nc}}</text>
+      </view>
+      <view class="right">
+        <view class="weui-cell__ft" wx:if="{{item.bz=='ok'}}" style="float:left; margin-toview:10px; margin-right:20px; ">
+          <icon tyviewe="success_no_circle" size="25"></icon>
+        </view>
+        <image src="/images/rightjian.png" style="width:20px;height:20px"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{show==2}}" style="margin-left:3px;margin-top:60px">
+  <view id="menus" wx:for="{{plist}}" wx:key="{{index}}">
+    <view class="content" data-select="{{item}}" data-in="{{index}}" style="height:150px" bindtaview="bindOk">
+      <view>
+        <text style="margin-left:10px;">{{item.xm==null?"未实名":item.xm}}</text>
+        <image src="/images/icon_smrz.png" style="margin-left:10px;width:15px;height:15px"></image>
+        <image src="/images/icon_tdgjsrz.png" style="margin-left:5px;width:15px;height:15px"></image>
+        <image src="/images/icon_tdgjsrz.png" style="margin-left:5px;width:15px;height:15px"></image>
+      </view>
+      <view style="font-size:12pt;margin-left:10px;">
+        申请公司：{{item.jgmc}}
+      </view>
+      <view style="float:left">
+        <view class="weui-cell__ft" style="float:left; margin-toview:10px; margin-right:20px; ">
+          <image src="{{item.fj_img[0].yyzz_img}}" bindtap="preview" data-image='{{item.fj_img[0].yyzz_img}}' style="width:60px;height:60px;margin-left:10px;"></image>
+          <image src="{{item.fj_img[1].gsmt_img}}" bindtap="preview" data-image='{{item.fj_img[1].gsmt_img}}' style="width:60px;height:60px;margin-left:10px;"></image>
+        </view>
+      </view>
+      <view style="width:100%;height:22px;margin-top:20px;">
+        <button class="btn" data-xtype="sm" bindtap="sayyes" data-userid="{{item.adminuserid}}" style="float:right">通过</button>
+        <button class="btn" data-xtype="sm" bindtap="sayno" data-userid="{{item.adminuserid}}" style="float:right">驳回</button>
+      </view>
+    </view>
+  </view>
+</view>
+<modal hidden="{{hidden}}" title="{{title}}" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}" text="" style="background:#ff0000;">
+  <textarea style="width:280px;height:150px;border:solid 1px;margin-left:0px;" bindinput="setly" />
+</modal>

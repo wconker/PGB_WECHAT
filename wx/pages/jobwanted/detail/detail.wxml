@@ -1,0 +1,115 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+    <view class="weui-cells__title">人才详情</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">姓名</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.xm}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input" bindtap="bindTel" id="{{info.lxsj}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">联系电话</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.lxsj}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">求职职位</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.gw}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">工作性质</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.gzxz}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">工作地点</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.gzdd}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input" bindtap="bindSelectM" id="records.yyzg" data-bt="已有资格" data-options="{{qzzwLists}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">已有资格</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.yyzg}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input" bindtap="bindSelectS" id="records.xl" data-bt="学历" data-options="{{xlLists}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">学历</view>
+        </view>
+        <view class="weui-cell__bd">
+         <view>{{info.xl}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">工作经验</view>
+        </view>
+        <view class="weui-cell__bd">
+         <view>{{info.gzjy}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">薪酬要求</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.xcyq}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">备注</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.bz}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">发布时间</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.fbsj}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">阅读次数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.ydcs}}</view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>
+
+

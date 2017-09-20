@@ -1,0 +1,367 @@
+//index.js  广播添加完成
+var WxNotificationCenter = require("../../utils/WxNotificationCenter.js");
+
+//获取应用实例
+var app = getApp()
+Page({
+  data: {
+    height: "",
+    hidden_rz: true, // true 是隐藏，false 是显示
+    imgUrls: [],
+    toutiao: [],
+    hdimg: "",
+    x_menus: [
+      { title: '询价业务', icon: '/images/icon_ask.png' },
+      { title: '查勘业务', icon: '/images/icon_task.png' },
+      { title: '查勘工具', icon: '/images/icon_eval.png' },
+      { title: '求职招聘', icon: '/images/icon_lookfor.png' },
+      { title: '专业论坛', icon: '/images/talk.jpg' },
+      { title: '文库', icon: '/images/library.png' },
+      { title: '在线教育', icon: '/images/counter.png' },
+      { title: '行业工具', icon: '/images/icon_job.png' },
+      { title: '其他', icon: '/images/icon_more.png' },
+    ],
+    img_height: '',
+    img_width: '',
+    indicatorDots: true,
+    autoplay: true,
+    interval: 5000,
+    duration: 1000,
+    userInfo: {},
+    news: [],
+    hidden: true,//用户协议隐藏
+  },
+  //事件处理函数
+  bindMenuTap: function (event) {
+    var pageUrl;
+    switch (event.currentTarget.id) {
+      case '询价业务':
+        pageUrl = '/pages/ask/list/list';
+        break;
+      case '查勘业务':
+        // case '评估':
+        pageUrl = '/pages/task/list/list';
+        break;
+      case '查勘工具':
+        var pageUrl;
+        pageUrl = '/pages/tool/list/list';
+        wx.navigateTo({
+          url: pageUrl
+        })
+        return
+        break;
+      case '求职招聘':
+        pageUrl = '/pages/job/index';
+        wx.navigateTo({ url: pageUrl })
+        return
+        break;
+      case '招聘':
+        pageUrl = '/pages/recruit/list/list';
+        wx.navigateTo({ url: pageUrl })
+        return
+        break;
+      case '在线教育':
+        wx.showToast({
+          title: '敬请期待！',
+        });
+        break;
+      case '文库':
+        pageUrl = '/pages/booklibrary/list/list';
+        wx.navigateTo({ url: pageUrl })
+
+        break;
+      case '专业论坛':
+        wx.showToast({
+          title: '敬请期待！',
+        })
+        break;
+      case '行业工具':
+        pageUrl = '/pages/tool/index';
+        wx.navigateTo({ url: pageUrl })
+        return
+        break;
+      case '其他':
+        wx.showToast({
+          title: '敬请期待！',
+        })
+        break;
+    };
+    wx.switchTab({
+      url: pageUrl
+    })
+  },
+
+  //conker 同意用户协议
+  confirm: function () {
+    WxNotificationCenter.addNotification("user.agreeYhxy", this.agreeYhxy, this);
+    var sCmd = {
+      "cmd": "user.agreeYhxy",
+      "data": {}
+    };
+    WxNotificationCenter.postNotificationName("send", sCmd);
+    //发起同意的协议;
+    this.setData({ hidden: true });
+  },
+
+  //conker 引导注册
+  confirm_rz: function () {
+    wx.navigateTo({
+      url: '/pages/mine/person/person',
+    })
+
+  },
+  //conker 去查看协议
+  canel_rz: function () {
+    var date = new Date();
+    wx.setStorage({
+      key: 'canel_rz',
+      data: {
+        "m": date.getMonth() + 1,
+        "d": date.getDate()
+      },
+    })
+    this.setData({ hidden_rz: true });
+  },
+
+  //conker 
+  agreeYhxy: function (res) {
+    console.log(res);
+  },
+  new_more: function () {
+    wx.navigateTo({
+      url: '/pages/news/list/list'
+    });
+  },
+  bindNewsTap: function (event) {
+    var pageUrl;
+    var id;
+    id = event.currentTarget.id;
+    pageUrl = '/pages/news/detail/detail' + '?id=' + id;
+    // console.log(event);  
+    wx.navigateTo({
+      url: pageUrl
+    })
+  },
+
+  //conker
+  agree: function () {
+    wx.navigateTo({
+      url: '/pages/mine/agree/agree',
+    })
+  },
+
+  //去查看协议
+  canel: function () {
+    wx.navigateTo({
+      url: '/pages/mine/agree/agree',
+    })
+  },
+  compareTime: function (m, d) {
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    if (month - m == 0) {
+      if (day - d > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (month - m > 0 || m - month == 11) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  },
+
+  //conker
+  checkIfDialog: function () {
+    var me = this;
+    //conker 取缓存中的数据
+    wx.getStorage({
+      key: 'canel_rz',
+      success: function (res) {
+
+        if (me.compareTime(res.m, res.d)) {
+          me.setData({
+            hidden_rz: false
+          })
+        }
+      },
+      fail: function (res) {
+        me.setData({
+          hidden_rz: false
+        })
+      }
+    })
+
+  },
+  onLoad: function () {
+    //注册接收的协议
+    var me = this;
+
+    //conker 获取高度
+    wx.getSystemInfo({
+      success: function (res) {
+        me.setData({
+          height: 'height:' + (res.windowHeight / 3) + 'px',
+          img__height: res.windowHeight / 3 + 105 + 'px',
+          img__width: res.windowWidth - 100 + 'px'
+        })
+      }
+    });
+    var that = this
+    if (!app.data.userid) {
+      wx.showToast({
+        title: '加载中',
+        icon: 'loading',
+        duration: 10000
+      })
+      setTimeout(function () {
+        that.getContent()
+        wx.hideToast()
+      }, 2000)
+    } else {
+      this.getContent()
+    }
+  },
+  onShow: function () {
+    WxNotificationCenter.addNotification("conn.getNewsList", this.getNewsList, this)
+    WxNotificationCenter.addNotification("conn.getAdPicUrlList", this.getAdPicUrlList, this)
+    WxNotificationCenter.addNotification("conn.getToutiaoList", this.getToutiaoList, this)
+    WxNotificationCenter.addNotification("user.getUserinfo", this.getUserinfo, this)
+    // console.log("index onSHow  userid:" + app.data.userid);  
+
+  },
+
+  onHide: function () {
+    WxNotificationCenter.removeNotification("conn.getNewsList", this)
+    WxNotificationCenter.removeNotification("conn.getAdPicUrlList", this)
+    WxNotificationCenter.removeNotification("conn.getToutiaoList", this)
+    WxNotificationCenter.removeNotification("user.getUserinfo", this)
+  },
+  onUnload: function () {
+    WxNotificationCenter.removeNotification("conn.getNewsList", this)
+    WxNotificationCenter.removeNotification("conn.getAdPicUrlList", this)
+    WxNotificationCenter.removeNotification("conn.getToutiaoList", this)
+    WxNotificationCenter.removeNotification("user.getUserinfo", this)
+  },
+
+  getContent: function () {
+    var that = this
+    //取行业资讯
+    var sCmd = {
+      "cmd": "conn.getNewsList",
+      "data": {
+        "rows": 5
+      }
+    };
+    WxNotificationCenter.postNotificationName("send", sCmd);
+
+    //获首页轮播图片列表
+    sCmd = {
+      "cmd": "conn.getAdPicUrlList",
+      "data": {}
+    };
+    WxNotificationCenter.postNotificationName("send", sCmd);
+    //取头条
+    sCmd = {
+      "cmd": "conn.getToutiaoList",
+      "data": {}
+    };
+    WxNotificationCenter.postNotificationName("send", sCmd);
+
+    var userCmd = { "cmd": "user.getUserinfo", "data": {} };
+    WxNotificationCenter.postNotificationName("send", userCmd);
+
+  },
+
+
+  //协议接收 getNewsList
+  getNewsList: function (res) {
+    wx.stopPullDownRefresh()
+    switch (res.data.code) {
+      case 0:
+        if (res.data.data.length > 0) {
+          this.setData({ news: res.data.data })
+        }
+        break;
+      default:
+        break;
+    }
+  },
+
+  //获首页轮播图片列表
+  getAdPicUrlList: function (res) {
+
+    switch (res.data.code) {
+      case 0:
+        if (res.data.data.length > 0) {
+          this.setData({ imgUrls: res.data.data })
+        }
+        break;
+      default:
+        break;
+    }
+  },
+
+  //取头条
+  getToutiaoList: function (res) {
+    switch (res.data.code) {
+      case 0:
+        this.setData({ toutiao: res.data.data })
+        break;
+      default:
+        break;
+    }
+  },
+  //用户信息获取
+  getUserinfo: function (res) {
+    var me = this;
+    switch (res.data.code) {
+      case 0:
+        getApp().data.user = res.data.data[0];
+        // conker 是否已经同意
+        if (res.data.data[0].yhxytybz == 1) {
+          this.setData({ hidden: true })
+        } else {
+          this.setData({ hidden: false })
+        }
+
+        if (res.data.data[0].scrzbz < 2) {
+          me.setData({ hdimg: res.data.data[0].hdimg })
+          me.checkIfDialog();
+        }
+        break;
+      default:
+        wx.showToast({
+          title: res.data.message,
+          icon: 'success',
+          duration: 1500
+        })
+        break;
+    }
+  },
+
+  onShareAppMessage: function () {
+    return {
+      title: '全国估价师共享协作平台',
+      path: 'pages/index/index'
+    }
+  },
+  onPullDownRefresh: function () {
+    this.getContent()
+    wx.showToast({
+      title: ' 刷新首页信息中 ',
+      icon: 'loading',
+      duration: 1000
+    })
+
+  }
+
+
+})  

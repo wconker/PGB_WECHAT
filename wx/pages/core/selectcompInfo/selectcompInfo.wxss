@@ -1,0 +1,36 @@
+.contain {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.line {
+  color: gray;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 9pt;
+}
+
+.substrBox, .imgBox {
+  margin: 0 auto;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-top: 5px;
+  width: 90%;
+   color: gray;
+}
+
+.title {
+  margin-top: 10px;
+  width: 96%;
+  font-size: 19pt;
+}
+
+.title_bottom {
+  color: gray;
+  font-size: 12pt;
+}
+
+.tips {
+  margin-top: 15px;
+  color: gray;
+}

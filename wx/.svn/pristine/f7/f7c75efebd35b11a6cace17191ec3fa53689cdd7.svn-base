@@ -1,0 +1,100 @@
+
+<block wx:if="{{witch==2}}">
+  <view class="weui-cells__title">绑定手机</view>
+  <view class="weui-cells weui-cells_form">
+    <view class="weui-cell weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">手机号码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="idcard" bindinput="setphone" value="{{phone}}" placeholder="请输入手机号码" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">验证码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="idcard" bindinput="setyzm" placeholder="请输入验证码" />
+      </view>
+      <view class="weui-cell__ft" bindtap="getyzm">
+        <button class="weui-vcode-btn" disabled="{{phone_yzm_status}}">{{yzmtext}}</button>
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="bindOkforphone">提交</button>
+  </view>
+  <view class="weui-cells__tips">{{phonemsg}}</view>
+</block>
+<block wx:if="{{witch==1}}">
+  <view class="weui-cells__title">绑定邮箱</view>
+  <view class="weui-cells weui-cells_form">
+    <view class="weui-cell weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">邮箱地址</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="text" bindinput="setemail" value="{{email}}" placeholder="输入邮箱" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">验证码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="text"    bindinput="setemailyzm" placeholder="请输入验证码" />
+      </view>
+      <view class="weui-cell__ft" bindtap="getyzmbyemail">
+        <button class="weui-vcode-btn" disabled="{{mail_yzm_status}}">{{yzmtext}}</button>
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" bindtap="bindOkforemail">提交</button>
+  </view>
+  <view class="weui-cells__tips">{{emailmsg}}</view>
+  <!--
+  绑定公司信息-->
+</block>
+<form bindsubmit="bindOkforcompany" report-submit="true">
+<block wx:if="{{witch==3}}">
+  <view class="weui-cells__title">绑定公司</view>
+  <view class="weui-cells weui-cells_form">
+    <view class="weui-cell weui-cell_select" bindtap="goselectcomp">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+        <view class="weui-label">公司名称</view>
+      </view>
+      <view class="weui-cell__bd" style="padding:0">
+        <view class="weui-cell weui-cell_input" style="padding:0" data-bt="{{item.bt}}" data-options="{{item.xxlist}}" data-item="{{item}}" id="{{index}}">
+          <view class="weui-cell__bd">
+          {{jgmc}}
+          </view>
+          <image src="/images/rightjian.png" style="width:20px;height:20px"></image>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">申请信息</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" bindinput="bdwBindblur" value="{{sqbz}}" placeholder="申请信息" />
+      </view>
+    </view>
+  </view>
+  <view class="weui-cells__title">可能符合的信息</view>
+  <form class="weui-search-bar__form">
+    <block wx:for="{{tjlist}}" wx:key="index">
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active" id="{{index}}">
+        <view class="weui-cell__bd" bindtap="selectitem" data-choseone="{{item}}" data-jgmc="{{item.jgmc}}">{{item.jgmc}}</view>
+      </view>
+    </block>
+  </form>
+
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" formType="submit">提交</button>
+  </view>
+  <view class="weui-cells__tips">{{gsmsg}}</view>
+</block>
+</form>

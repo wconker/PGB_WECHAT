@@ -1,0 +1,44 @@
+page{
+    background: #fafafa;
+}
+button{
+    width: 720rpx;
+}
+
+.weui-pay_title{
+    font-size: 16pt;
+    color: #555555;
+}
+
+.flex-info {
+  display: flex;
+  -webkit-align-items: center;
+          align-items: center;
+}
+
+.weui-pay-label{
+    font-size: 18pt;
+}
+.weui-textarea{
+    font-size: 18pt;
+    padding-left: 8pt;
+}
+.weui-pay_info {
+  padding: 0px 0px 8px 8px;
+  margin-top: 30px;
+  color: #999999;
+  font-size: 12px;
+  position: relative;
+  text-align: left;
+}
+.oper{
+    margin-top: 8px
+}
+
+.weui-pay_info2 {
+  padding: 0px 0px 8px 8px;
+  color: #999999;
+  font-size: 12px;
+  position: relative;
+  text-align: left;
+}

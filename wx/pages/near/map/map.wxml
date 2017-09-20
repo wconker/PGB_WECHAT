@@ -1,0 +1,5 @@
+<view  style="width100%;height:{{mapHeight*0.07}}px;line-height:35px;font-size:12pt; text-align:center;background:rgba(0,0,0,0.5);color:#fff">5公里范围内有<b style="margin:0px 5px;color:#fff000;font-size:14pt;">{{group}}</b>位估价师在活动</view>
+
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" title="ddd" circles="{{circles}}" bindmarkertap="markertap" bin polyline="{{polyline}}" bindregionchange="regionchange"
+show-location style="width: 100%; height:{{mapHeight}}px;">
+</map>

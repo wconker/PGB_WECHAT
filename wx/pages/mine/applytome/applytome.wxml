@@ -1,0 +1,37 @@
+
+<!-- shbz 审核标志
+     0 ：未申请，且未接受状态
+     1 ：已申请 未接受状态
+     2 ：已审核状态
+ -->
+
+<view id="menus" wx:for="{{plist}}" wx:key="{{index}}">
+  <view class="content" style="width:100%">
+    <view class="view">
+      <image src="/images/default.jpg" wx:if="{{item.tx_img==''}}" class="image"></image>
+      <image src="{{item.tx_img}}" wx:if="{{item.tx_img!=''}}" class="image"></image>
+      <text>{{item.xm}}{{item.bm==null?'':'-'+item.bm}} </text>
+    </view>
+    <view class="right">
+      <image src="/images/admin.png" wx:if="{{item.qygly==1}}" class='imageadmin'></image>
+      <view class="weui-cell__ft" wx:if="{{item.shbz==1 && admin==1}}" style="float:left; margin-right:20px; ">
+        <button type="primary" size="mini" data-select="{{item}}" bindtap="bindOk" hover-class="other-button-hover"> 接受 </button>
+
+        <!--<icon type="info" size="25"></icon>-->
+      </view>
+      <view class="weui-cell__ft" wx:if="{{item.shbz==2  && admin==1}}" style="float:left; margin-right:20px; ">
+        <button type="default" size="mini"  data-select="{{item}}" bindtap="manager" hover-class="other-button-hover"> 设置 </button>
+
+        <!--<icon type="success" size="25"></icon>-->
+      </view>
+
+      <view class="weui-cell__ft" wx:if="{{item.shbz==0}}" style="float:left; margin-right:20px; ">
+        <button type="primary" size="mini"  data-select="{{item}}"  open-type="share"  bindtap="bindInvite" hover-class="other-button-hover"> 邀请 </button>
+
+        <!--<icon type="success" size="25"></icon>-->
+      </view>
+
+      <!--<image src="/images/rightjian.png" style="width:14px;height:14px"></image>-->
+    </view>
+  </view>
+</view>

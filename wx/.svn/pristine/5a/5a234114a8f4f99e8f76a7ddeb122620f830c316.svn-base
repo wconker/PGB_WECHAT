@@ -1,0 +1,15 @@
+.oper{
+  display:flex;
+  flex-direction:row;
+  background: #fff;
+  height: 80rpx;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  border-top: 0.5px solid #ebebeb; 
+  padding: 5rpx;
+}
+
+.button{
+    width: 300rpx;
+}

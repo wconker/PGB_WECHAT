@@ -1,0 +1,24 @@
+<view style="width:100%;background:green;color:white;text-align:center;font-size:16pt">{{data.gsmc}}</view>
+<view style="text-align:center">
+  <view style="font-size:14pt; border:solid 1px #f2f2f2"> {{data.zylx[0].sfdmc}}</view>↓
+  <view style="font-size:14pt;border:solid 1px #f2f2f2">{{data.zylx[0].mddmc}}</view>
+</view>
+<view style="float: left;padding: 5px;margin-top:10px;" class="zb">
+  <view style="font-size:13pt; text-align:center;height:65px; width:50px;float:left">周边路线</view>
+  <view style="background: red;height: 65px;color: yellow;/*float: left*/width: 100%;padding: 0px 5px 0 0;">{{data.zblx}}</view>
+</view>
+<view style="border:solid 1px #f2f2f2;margin:100px 15px 0px 15px">
+  <view style="font-size:12pt">{{data.zylx[0].sfdmc}}地址：{{data.zylx[0].sfddz}}</view>
+  <view style="font-size:12pt">
+    联系人：{{data.fzr}}
+  </view>
+  <view style="font-size:12pt"> 联系手机:{{data.lxsj}}</view>
+</view>
+<view style="border:solid 1px #f2f2f2;margin:15px;font-size:12pt">
+  <view style="font-size:12pt"> {{data.zylx[0].mddmc}} 地址：{{data.zylx[0].mdddz}}
+  </view>
+  <view>联系电话：{{data.fzrdh}}</view>
+</view>
+<view class="weui-cells__tips" style="width:100%;font-size:10pt;position:fixed;bottom:0px;text-align:center">信息有误?
+  <text style="color:blue">我要更正</text>
+</view>

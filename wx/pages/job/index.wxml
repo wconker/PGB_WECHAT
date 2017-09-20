@@ -1,0 +1,18 @@
+<view id="menus">
+  <view class="content" bindtap="zp">
+    <view class="view">
+      <text>招聘</text>
+    </view>
+    <view class="right">
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+  <view class="content" bindtap="qz">
+    <view class="view">
+      <text>求职</text>
+    </view>
+    <view class="right">
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+</view>

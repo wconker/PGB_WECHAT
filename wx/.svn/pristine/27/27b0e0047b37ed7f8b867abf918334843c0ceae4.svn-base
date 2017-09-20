@@ -1,0 +1,101 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/more/more",
+    "pages/near/index/index",
+    "pages/near/map/map",
+    "pages/core/billList/billList",
+    "pages/core/billItem/billItem",
+    "pages/core/selects/selects",
+    "pages/core/selectm/selectm",
+    "pages/core/selectp/selectp",
+    "pages/core/selectap/selectap",
+    "pages/ask/list/list",
+    "pages/ask/new/new",
+    "pages/ask/detail/detail",
+    "pages/ask/answer/answer",
+    "pages/ask/answerdetail/answerdetail",
+    "pages/task/list/list",
+    "pages/task/new/new",
+    "pages/task/detail/detail",
+    "pages/task/answer/answer",
+    "pages/task/answerdetail/answerdetail",
+    "pages/task/task/task",
+    "pages/task/record/record",
+    "pages/task/myrecord/myrecord",
+    "pages/eval/list/list",
+    "pages/mine/list/list",
+    "pages/jobwanted/list/list",
+    "pages/jobwanted/new/new",
+    "pages/jobwanted/detail/detail",
+    "pages/recruit/list/list",
+    "pages/recruit/mylist/mylist",
+    "pages/recruit/new/new",
+    "pages/recruit/detail/detail",
+    "pages/news/list/list",
+    "pages/news/detail/detail",
+    "pages/mine/setting/setting",
+    "pages/mine/map/map",
+    "pages/mine/auth/list/list",
+    "pages/mine/manager/list/list",
+    "pages/mine/auth/fcpgs_auth/fcpgs_auth",
+    "pages/mine/auth/tdpgs_auth/tdpgs_auth",
+    "pages/mine/person/person",
+    "pages/mine/bindinfo/bindinfo",
+    "pages/mine/auth/certification/certification",
+    "pages/core/selectcity/selectcity",
+    "pages/core/selectcomp/selectcomp",
+    "pages/core/assessment/assessment",
+    "pages/mine/pay/pay",
+    "pages/mine/manager/Audit/Audit",
+    "pages/mine/applytome/applytome",
+    "pages/mine/apply/apply",
+    "pages/mine/agree/agree",
+    "pages/mine/withdraw/withdraw",
+    "pages/mine/adminMgmt/adminMgmt",
+    "pages/tool/list/list",
+    "pages/tool/detail/detail",
+    "pages/tool/new/new"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff7a00",
+    "navigationBarTitleText": "评估帮",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#ff7a00",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icon_index_gray.png",
+        "selectedIconPath": "images/icon_index.png"
+      },
+      {
+        "pagePath": "pages/ask/list/list",
+        "text": "询价",
+        "iconPath": "images/icon_ask_gray.png",
+        "selectedIconPath": "images/icon_ask.png"
+      },
+      {
+        "pagePath":   "pages/near/map/map",
+        "text": "地图",
+        "iconPath": "images/icon_map_gray.png",
+        "selectedIconPath": "images/icon_map.png"
+      },
+      {
+        "pagePath": "pages/task/list/list",
+        "text": "查勘",
+        "iconPath": "images/icon_task_gray.png",
+        "selectedIconPath": "images/icon_task.png"
+      },
+      {
+        "pagePath": "pages/mine/list/list",
+        "text": "我",
+        "iconPath": "images/icon_mine_gray.png",
+        "selectedIconPath": "images/icon_mine.png"
+      }
+    ]
+  }
+}

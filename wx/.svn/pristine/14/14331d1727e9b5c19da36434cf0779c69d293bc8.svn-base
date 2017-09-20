@@ -1,0 +1,85 @@
+<view style="margin:15px;">
+  <view style=" text-align:center;font-weight:bold;">评估帮软件许可及服务协议</view>
+<view>
+  <view style="height:36px;line-height:36px;">第一条 特别提示</view>
+  <view class="deepgray" style="line-height:24px;">1、杭州软洋科技有限公司（以下简称“软洋科技”）在此特别提醒您（用户）在注册成为用户之前，请认真阅读本《评估帮软件许可及服务协议》（以下简称“协议”），确保您充分理解本协议中各条款，包括免除软洋科技责任的条款及限制用户权利的条款。请您审慎阅读并选择接受或不接受本协议。除非您接受本协议所有条款，否则您无权注册、登录或使用本协议所涉服务。您的注册、登录、使用等行为将视为对本协议的接受，并同意接受本协议各项条款的约束。 </view>
+  <view class="deepgray" style="line-height:24px;">2、本协议约定软洋科技与用户之间关于“评估帮”软件服务（以下简称“服务”）的权利义务。“用户”是指注册、 登录、使用本服务的个人。本协议可由软洋科技在线随时更新， 更新后的协议条款一旦公布即代替原来的协议条款，恕不再另行通知，用户可在评做帮APP查阅最新版协议条款。在软洋科技修改协议条款后，如果用户不接受修改后的条款，请立即停止使用软洋科技提供的服务，用户继续使用软洋科技提供的服务将被视为接受修改后的协议。 </view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第二条 账号注册</view>
+  <view class="deepgray" style="line-height:24px;">1、用户在使用本服务前需要注册一个“评估帮”账号，或者绑定一个微信号。“评估帮”账号应当使用手机号码绑定注册， 请用户使用尚未与“评估帮”账号绑定的手机号码，以及未被软洋科技根据本协议封禁的手机号码注册“评估帮”账号。 软洋科技可以根据用户需求或产品需要对账号注册和绑定的方式进行变更，而无须事先通知用户。 </view>
+  <view class="deepgray" style="line-height:24px;">2、如果注册申请者有被软洋科技封禁的先例或涉嫌虚假注册及滥用他人名义注册，及其他不能得到许可的理由， 软洋科技将拒绝其注册申请。</view>
+  <view class="deepgray" style="line-height:24px;">3、注册成功后，用户可以通过“评估帮”软件中“我的账号”界面浏览或更改本人的个人信息。 但不能修改系统自动分配给用户的ID-“评估帮号”。</view>
+  <view class="deepgray" style="line-height:24px;">4、用户注册时所填写的个人信息如有变动，用户需通过“我的账号”界面及时更改。 用户因未及时更改造成的损失软洋科技概不负责。</view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第三条 服务内容</view>
+  <view class="deepgray" style="line-height:24px;">1、本服务的具体内容由软洋科技根据实际情况提供，包括但不限于： （1） 询价：用户安装运行“评估帮”APP后可以在软件中发布有偿询价信息或免费的内部询价信息； （2） 查勘：用户可以发布有偿代勘或免费的内部查勘信息； （3） 平台服务费：作为平台运维方，软洋科技将从询价或查勘发起者支付给实际报价人或查勘任务承担人的费用里扣除一定比例的服务费； （4） 求职：用户可以发布行业内的求职信息； （5） 招聘：用户可以发布行业内的招聘信息。
+  </view>
+  <view class="deepgray" style="line-height:24px;">2、用户可以浏览软洋科技网站
+    <a href="http://www.softsea.cn" target="_blank">(http://www.softsea.cn/)</a> 了解软洋科技提供的服务内容。</view>
+  <view class="deepgray" style="line-height:24px;">3、在遵守相关法律法规前提下，根据合作广告主的要求，软洋科技有权决定用户在“评估帮”软件界面上看到的广告内容。</view>
+  <view class="deepgray" style="line-height:24px;">4、平台上的有偿服务价格由软洋科技全权决定。</view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第四条 使用规则</view>
+  <view class="deepgray" style="line-height:24px;">1、用户需从官方渠道下载安装软洋科技提供的“评估帮”软件（App）。</view>
+  <view class="deepgray" style="line-height:24px;">2、用户安装运行“评估帮”软件后，对平台上的询价信息进行有效报价，可以获取报酬。</view>
+  <view class="deepgray" style="line-height:24px;">3、用户对平台上的招标进行投标，中标后按照招标要求如期完成查勘任务后，可以获取报酬。</view>
+  <view class="deepgray" style="line-height:24px;">4、用户可以在“评估帮”软件中查看自己累计的报酬情况。</view>
+  <view class="deepgray" style="line-height:24px;">5、用户在“评估帮”软件中显示的累计收入可能与软洋科技服务器端存在统计差异，实际积分数量以服务器端为准。</view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第五条 收入提现</view>
+  <view class="deepgray" style="line-height:24px;">1、用户在“评做帮”平台上获得的收入，可以按照平台提现规则进行提现。</view>
+  <view class="deepgray" style="line-height:24px;">2、用户只有完成实名制认证后才可以提现。</view>
+  <view class="deepgray" style="line-height:24px;">3、提现起步金额为10元，单次提现最高金额为500元。</view>
+  <view class="deepgray" style="line-height:24px;">4、每日提现次数不得超过5次。</view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第六条 收入有效期</view>
+  <view class="deepgray" style="line-height:24px;">1、如果用户的累计收入出现错误，用户可以自出现错误之日起90天以内向软洋科技提出更正要求， 软洋科技如果确定该用户的要求为正当合理，应在用户提出要求之日起90天以内更正错误。</view>
+  <view class="deepgray" style="line-height:24px;">2、如果用户采用擅自更改“评估帮”软件程序或通过刷机刷量等技术手段邀请虚假用户或在没有充分告知其他潜在用户的情况下使得该潜在用户虽然安装了“评估帮”软件但没有正常使用行为的或使用黑客手段攻击软洋科技服务器等不正当手段来获取收入， 软洋科技视为用户作弊行为而有权取消该用户资格并删除该用户所有收入， 并保留对攻击软洋科技服务器等黑客行为追究法律责任的权力。</view>
+  <view class="deepgray" style="line-height:24px;">3、长期不运行“评估帮”软件的用户（非活跃用户）所获得收入自动被清零。 长期不运行指3个月内没有运行“评估帮”软件。</view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第七条 用户账户安全</view>
+  <view class="deepgray" style="line-height:24px;">1、注册用户的登陆密码管理由用户来负责，用户不应把自己的密码告诉其他第三者。</view>
+  <view class="deepgray" style="line-height:24px;">2、如用户没有完成手机号注册流程，仍然继续使用“评估帮”软件，系统将自动为该用户分配一个评估帮号， 该评估帮号无需用配套密码登陆。用户需尽快完成该评估帮号与手机号的绑定。</view>
+  <view class="deepgray" style="line-height:24px;">3、用户如果遗失自己的登陆密码，需及时通知软洋科技，并按照软洋科技的指导来解决该问题。 出现第七条第2条的情况下，如果该用户没有完成评估帮号与手机号的绑定导致账户收入丢失， 软洋科技对此不负任何责任。 </view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第八条 服务的变更、中断、终止</view>
+  <view class="deepgray" style="line-height:24px;">1、因设备维修或更换、故障和通信中断等技术原因而中断业务，软洋科技可视情况事前或事后通知用户。</view>
+  <view class="deepgray" style="line-height:24px;">2、软洋科技临时中断业务时将在软洋科技网站
+    <a href="http://www.softsea.cn" target="_blank">(http://www.softsea.cn/)</a> 公告。</view>
+  <view class="deepgray" style="line-height:24px;">3、因不可抗力导致的业务中断发生时,软洋科技不给予用户补偿。 </view>
+  <view class="deepgray" style="line-height:24px;">4、当软洋科技用户发生如下情况时，软洋科技可单方面终止本协议，取消用户继续使用软洋科技产品及服务的资格： （1） 用户死亡； （2） 盗用他人的个人信息或手机； （3） 注册用户时提供虚假信息； （4） 以非法手段（包括且不限于黑客攻击等）来使用本软件； （5） 妨碍其他用户的正常使用； （6） 伪称是软洋科技的工作人员或管理人员； （7） 擅自强行更改软洋科技的计算机系统，或威胁侵入系统； （8） 擅自传播谣言，用各种手段来毁损软洋科技的名誉与妨碍软洋科技的正常营业； （9） 利用软洋科技的产品及服务宣传垃圾广告；
+    （10） 其他违反本协议的行为及违法行为。 （11） 用户如因上述第4-（1）条原因而被取消用户资格，用户法定财产继承人可在用户资格被取消之日起30日 内向软洋科技提出书面申请，将该用户剩余收入转移至自己所有的软洋科技账号下， 否则软洋科技有权删除该用户剩余收入。 （12） 用户如因上述第4-（2）条到第4-（10）条的原因而被取消用户资格，软洋科技有权立即删除该用户的全部收入。 </view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第九条 用户个人隐私信息保护</view>
+  <view class="deepgray" style="line-height:24px;">1、软洋科技未经用户同意不向任何第三方公开、透露用户个人隐私信息。但以下特定情形除外： （1） 软洋科技根据法律法规规定或有权机关的指示提供用户的个人隐私信息； （2） 由于用户将其用户密码告知他人或与他人共享注册帐户与密码，由此导致的任何个人信息的泄漏， 或其他非因软洋科技原因导致的个人隐私信息的泄露； （3） 用户自行向第三方公开其个人隐私信息； （4） 用户与软洋科技及合作单位之间就用户个人隐私信息的使用公开达成约定， 软洋科技因此向合作单位公开用户个人隐私信息； （5） 任何由于黑客攻击、电脑病毒侵入及其他非因软洋科技原因导致用户个人隐私信息的泄露。
+  </view>
+  <view class="deepgray" style="line-height:24px;">2、用户同意软洋科技可在以下事项中使用用户的个人隐私信息： （1） 向用户及时发送重要通知，如软件更新、本协议条款的变更； （2） 软洋科技内部进行审计、数据分析和研究等，以改进软洋科技的产品、服务和与用户之间的沟通； （3） 依本协议约定，软洋科技管理、审查用户信息及进行处理措施； （4） 适用法律法规规定的其他事项。 </view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第十条 用户使用规范</view>
+  <view class="deepgray" style="line-height:24px;">软洋科技用户不能利用评估帮账号或软洋科技提供的服务进行如下行为： （1） 用户擅自更改、消除或毁损软洋科技提供的各种信息； （2） 利用技术手段批量建立虚假账号； （3） 侵害软洋科技以及第三者的知识产权； （4） 提交、发布虚假信息，或盗用他人资料，冒充、利用他人名义； （5） 未经软洋科技许可,而传播广告或淫秽暴力等信息； （6） 其他不遵守本协议的行为； （7） 其他违法以及不正当的行为。 </view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第十一条 免责条款</view>
+  <view class="deepgray" style="line-height:24px;">软洋科技提供的服务中包括询价、招标、求职、招聘信息，除法律法规明确规定外，用户应自行对依该信息进行的交易负责， 对用户因依该信息进行的交易而遭受的损失或损害，软洋科技不承担任何责任。 </view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第十二条 知识产权保护</view>
+  <view class="deepgray" style="line-height:24px;">软洋科技的商标、平台提供的有关业务内容的知识产权都归属于软洋科技。 用户从软洋科技获得的信息内容不经软洋科技的许可不能擅自复制、发布与出版。 </view>
+</view>
+<view>
+  <view style="height:36px;line-height:36px;">第十三条 其他</view>
+  <view class="deepgray" style="line-height:24px;">1、软洋科技郑重提醒用户注意本协议中免除软洋科技责任和限制用户权利的条款，请用户仔细阅读，自主考虑风险。 未成年人应在法定监护人的陪同下阅读本协议。</view>
+  <view class="deepgray" style="line-height:24px;">2、本协议的效力、解释及纠纷的解决，适用于中华人民共和国法律。若用户和软洋科技之间发生任何纠纷或争议， 首先应友好协商解决，协商不成的，用户同意将纠纷或争议提交软洋科技住所地有管辖权的人民法院管辖。</view>
+  <view class="deepgray" style="line-height:24px;">3、本协议的任何条款无论因何种原因无效或不具可执行性，其余条款仍有效，对双方具有约束力。</view>
+  <view class="deepgray" style="line-height:24px;">4、本协议的版权由软洋科技所有，软洋科技保留一切解释和修改的权力。</view>
+</view>
+</view>

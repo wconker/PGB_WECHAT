@@ -1,0 +1,19 @@
+<block wx:for="{{docList}}" wx:key="{{}}">
+  <view class="box">
+    <view class="HeaderImg">
+      <image src="/images/doc.png"></image>
+    </view>
+    <view class="ContentBox">
+      <view class="title">{{item.filename}}</view>
+      <view class="info">
+     
+        <text style="float:left">{{item.downloads}}人下载</text>
+         <text style="loat:left;margin-left:20px">{{item.size}}</text>
+     
+        <image src="/images/download.png"  bindtap="download" data-index="{{item.id}}" data-url="{{item.url}}" style="width:15px;float:right;height:15px;"></image>
+      </view>
+
+    </view>
+    <view class="line"></view>
+  </view>
+</block>

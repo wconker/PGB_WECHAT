@@ -1,0 +1,30 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="weui-pay_title">充值金额</view>
+          <view class="flex-info">
+        <view class="weui-pay-label">
+          <view class="weui-pay-label">¥</view>
+        </view>
+        <view class="weui-textarea">
+          <input class="weui-input" bindinput="bindKeyInput" placeholder="0.00" type="digit" onkeyup="clearNoNum(this)"/>
+        </view>
+      </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="oper">
+    <view>
+      <button size="normal" type="primary" class="button" bindtap="bindOk">确认</button>
+    </view>
+  </view>
+
+ 
+    <view class="weui-pay_info">充值未消费金额7日内可申请退款</view>
+    <view class="weui-pay_info2">充值金额不能提现</view>
+
+</view>

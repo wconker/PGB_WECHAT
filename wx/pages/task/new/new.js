@@ -1,0 +1,439 @@
+var mZhlxIndex = 0
+/*发起招标*/
+var WxNotificationCenter = require("../../../utils/WxNotificationCenter.js");//广播添加完成
+Page({
+  data: {
+    showTopTips: false,
+    tips: "",
+    files: [],
+    xjbdw: "",
+    group: [],
+    citys: {},
+    cityIndex: null,
+
+    bgjzrq: "",
+    bgjzsj: '23:59',
+
+    zblbs: [],
+    zblbIndex: null,
+
+    kcbmbs: [],
+    kcbmbIndex: null,
+    enable: false,
+    dkyh: "",
+    lxr: "",
+    lxdh: "",
+    pgjg: "",
+    ssms: "",
+
+    zbfws: ["对外", "内部"],
+    zbfwIndex: null,
+
+    bc: 0,
+
+    yxsjs: [],
+    yxsjIndex: 3,
+
+    zhlxjs: [],
+    zhlxIndex: 0,
+    flagNB: 0,
+
+
+    isSearchVisible: false,
+    add_e: null,
+    tipValue: ''
+  },
+
+  //conker 点击跳转到
+  gogroup: function () {
+    this.GoselectMate();
+
+  },
+  goselectcomp: function () {
+
+    wx.navigateTo({
+      url: '/pages/core/selectcomp/selectcomp',
+    })
+  },
+  chooseCity: function (e) {
+
+    this.data.recordIndex = e.currentTarget.id
+    wx.navigateTo({
+      url: '/pages/core/selectcity/selectcity'
+    })
+
+  },
+
+  chooseImage: function (e) {
+    var that = this;
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.setData({
+          files: that.data.files.concat(res.tempFilePaths)
+        });
+      }
+    })
+  },
+  previewImage: function (e) {
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: this.data.files // 需要预览的图片http链接列表
+    })
+  },
+  tipDisappear: function () {//出现错误后再点击，错误提示消失
+    this.setData({
+      tipValue: ''
+    })
+    console.log('点击后tipValue的值：', this.data.tipValue == '')
+  },
+  bindOk: function (e) {
+    console.log('我要提交查勘表', this.data.zblbs);
+    if (this.data.zblbIndex == null) {
+      this.setData({
+        tipValue: '招标类别不能为空！'
+      })
+    } else if (this.data.kcbmbIndex == null) {
+      this.setData({
+        tipValue: '查勘表不能为空！'
+      });
+    } else if (this.data.zbfwIndex == null) {
+      this.setData({
+        tipValue: '请选择招标范围'
+      });
+    }
+    this.setData({ isSearchVisible: true, add_e: e })
+  },
+
+  bindCoverTap: function () {
+    this.setData({ isSearchVisible: false })
+  },
+
+  dialogConfirm: function () {
+    this.setData({ isSearchVisible: false })
+    this.confirm2Add(this.data.add_e)
+  },
+
+  dialogCancel: function () {
+    this.setData({ isSearchVisible: false })
+  },
+  confirm2Add: function (e) {
+    mZhlxIndex = this.data.zhlxIndex
+    var zbdx = [];
+    var usrs = this.data.group;
+    for (var c = 0; c < usrs.length; c++) {
+      zbdx.push(usrs[c].userid);
+    }
+
+    this.setData({ enable: true });
+    //todo...数据校验
+
+    try {
+      var sCmd = {
+        "cmd": "business.addZb",
+        "data": {
+          "zblb": this.data.zblbs[this.data.zblbIndex].value,
+          "szcs": this.data.citys.dqdm,
+          "bdw": this.data.bdw,
+          "kcbmb": this.data.kcbmbs[this.data.kcbmbIndex].MBBH,
+          "lxr": this.data.lxr,
+          "lxdh": this.data.lxdh,
+          "dkyh": this.data.dkyh,
+          "pgjg": this.data.pgjg,
+          "xxsm": this.data.xxsm,
+          "zbyxsj": this.data.yxsjs[this.data.yxsjIndex].value,
+          "bgjzsj": this.data.bgjzrq + " " + this.data.bgjzsj,
+          "nbzb": this.data.zbfwIndex,
+          "bc": this.data.bc,
+          "zhlx": this.data.zhlxjs[this.data.zhlxIndex].value,
+          "zbdx": zbdx,
+          "form_id": e.detail.formId
+        }
+      };
+
+      WxNotificationCenter.postNotificationName("send", sCmd);
+    }
+    catch (e) {
+
+      console.log(e);
+    }
+
+  },
+
+  showTopTips: function (s) {
+    var that = this
+    this.setData({
+      tips: s,
+      showTopTips: true,
+    });
+    setTimeout(function () {
+      that.setData({
+        showTopTips: false
+      });
+    }, 3000);
+  },
+
+  bdwBindblur: function (e) {
+    this.setData({ bdw: e.detail.value })
+  },
+  lxrBindblur: function (e) {
+    this.setData({ lxr: e.detail.value })
+  },
+  lxdhBindblur: function (e) {
+    this.setData({ lxdh: e.detail.value })
+  },
+  dkyhBindblur: function (e) {
+    this.setData({ dkyh: e.detail.value })
+  },
+  pgjgBindblur: function (e) {
+    this.setData({ pgjg: e.detail.value })
+  },
+  xxsmBindblur: function (e) {
+    this.setData({ xxsm: e.detail.value })
+  },
+  bcBindblur: function (e) {
+    this.setData({ bc: e.detail.value })
+  },
+
+  bindDateChange: function (e) {
+    this.setData({
+      bgjzrq: e.detail.value
+    })
+  },
+
+  bindTimeChange: function (e) {
+    this.setData({
+      bgjzsj: e.detail.value
+    })
+  },
+
+  bindCityChange: function (e) {
+    this.setData({
+      cityIndex: e.detail.value
+    })
+  },
+
+  bindZblbChange: function (e) {
+    this.setData({
+      zblbIndex: e.detail.value
+    })
+  },
+  bindZhlxChange: function (e) {
+    console.log(e.detail.value)
+    this.setData({
+      zhlxIndex: e.detail.value,
+    })
+  },
+  onShow: function () {
+
+    var d = new Date();
+    var str = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+    this.setData({
+      bgjzrq: str
+    });
+
+    WxNotificationCenter.addNotification("conn.getSyType", this.getSyType, this)
+    WxNotificationCenter.addNotification("business.addZb", this.addZb, this)
+
+
+    //conker 这里是人工选择
+    if (getApp().data.jgmc != "!!!") {
+      this.setData({ pgjg: getApp().data.jgmc });
+    }
+    //conker 这里是从userinfo中获取
+    if (this.data.pgjg == "") {
+      if (getApp().data.user.gsmc != undefined && getApp().data.user.gsmc != "undefined") {
+        this.setData({ pgjg: getApp().data.user.gsmc });
+      }
+    }
+    //内部人员的返回,应用于多选的情况
+    if (getApp().data.select != "!!!" && getApp().data.select[0] != undefined) {
+
+      this.setData({ group: getApp().data.select });
+    }
+    //内部人员的返回,应用于单选的情况(did by maodan)
+    if (getApp().data.select != "!!!") {
+      this.setData({ group: getApp().data.select });
+      console.log('查看从查勘内部选择的组员是否传过来：', this.data.group.xm)
+    }
+    //conker 人工选择城市返回
+    if (getApp().data.city != "!!!") {
+      this.setData({ citys: getApp().data.city });
+    }
+    //conker 自动城市
+    // console.error(this.data.citys.dqdm, getApp().data.local)
+    if (this.data.citys.dqdm == undefined) {
+      this.setData({ citys: getApp().data.local });
+    }
+    getApp().data.jgmc = "!!!";
+    getApp().data.select = "!!!";
+  },
+  onHide: function () {
+    WxNotificationCenter.removeNotification("conn.getSyType", this)
+    WxNotificationCenter.removeNotification("business.addZb", this)
+  },
+  onUnload: function () {
+    WxNotificationCenter.removeNotification("conn.getSyType", this)
+    WxNotificationCenter.removeNotification("business.addZb", this)
+  },
+
+  //-----------------------------选择查勘方式-------------------------------------
+  bindZbfwChange: function (e) {
+    var me = this;
+    this.setData({
+      zbfwIndex: e.detail.value
+    });
+    if (e.detail.value == 1) {
+      me.GoselectMate();
+    };
+  },
+
+  //------------------------------------跳转到选择同事页面---------------------------------------
+  GoselectMate: function () {
+    wx.navigateTo({
+      url: '/pages/core/selectp/selectp?chakan=true'
+    });
+  },
+
+  bindWylxChange: function (e) {
+    console.log(e)
+    this.setData({
+      wylxIndex: e.detail.value
+    })
+  },
+
+  bindKcbmbChange: function (e) {
+    console.log(e)
+    this.setData({
+      kcbmbIndex: e.detail.value
+    })
+  },
+
+  bindYxsjChange: function (e) {
+    this.setData({
+      yxsjIndex: e.detail.value
+    })
+  },
+
+  onLoad: function (options) {
+    var select = options.selected;
+    var sCmd = { "cmd": "conn.getSyType", "data": { "type": "zb" } };
+    WxNotificationCenter.postNotificationName("send", sCmd);
+
+  },
+
+  getSyType: function (res) {
+    switch (res.data.code) {
+      case 0:
+        this.setData({ zblbs: res.data.data[0].zblb })
+        this.setData({ yxsjs: res.data.data[0].yxsj })
+        // console.log(res.data.data[0].wylx)
+        this.setData({ kcbmbs: res.data.data[0].kcbmb })
+        this.setData({ zhlxjs: res.data.data[0].zhlx })
+        this.setData({ zhlxIndex: mZhlxIndex })
+        break;
+      default:
+        wx.showToast({
+          title: res.data.message,
+
+          duration: 2000
+        })
+        break;
+    }
+  },
+
+  addZb: function (res) {
+    var that = this;
+    if (res.data.code == 0) {
+      //循环上传图片
+      var fileIndex = 1;
+      for (var item in that.data.files) {
+        var sData = {
+          "userid": getApp().data.userid,
+          "imgtype": encodeURI('招标附件'),
+          "imgname": fileIndex,
+          "fjbs": res.data.data.fjbs,
+          "zbid": res.data.data.zbid
+        }
+        console.log('附件上传', sData)
+        wx.uploadFile({
+          url: getApp().data.url,
+          filePath: that.data.files[item],
+          name: 'file',
+          formData: sData,
+          header: { "content-type": 'application/x-www-form-urlencoded' },
+          success: function (res) {
+            console.log('success', res)
+          }, fail: function (res) {
+            console.log('fail', res)
+          }
+        })
+        fileIndex++
+      }
+      if (res.data.data.zt == -1) {
+        wx.showModal({
+          title: '提示',
+          cancelText: '稍后',
+          confirmText: "立即前往",
+          content: '余额不足，请充值后操作！',
+          success: function (res) {
+            if (res.confirm) {
+
+              //conker 关闭当前页的跳转
+              wx.redirectTo({
+                url: '/pages/mine/pay/pay'
+              })
+            }
+            else {
+              wx.navigateBack({
+                delta: 1,
+                success: function (res) {
+                  wx.showToast({
+                    title: res.data.message,
+                    icon: 'success',
+                    duration: 2000
+                  })
+                }
+              });
+            }
+          }
+        })
+      }
+
+      if (res.data.data.zt == 0) {
+        wx.navigateBack({
+          delta: 1,
+          success: function (res1) {
+            // success
+            wx.showToast({
+              title: res.data.message,
+              icon: 'success',
+              duration: 3000
+            })
+          }
+        })
+      }
+    }
+    else {
+      //conker把按钮恢复
+      that.setData({ enable: false });
+      wx.showToast({
+        title: res.data.message,
+      })
+    }
+  },
+  mapSearch: function () {
+    var me = this;
+    wx.chooseLocation({
+      success: function (res) {
+        console.log(res.address);
+
+        me.setData({
+          bdw: res.address
+        })
+      },
+    })
+  }
+});

@@ -1,0 +1,22 @@
+<view class="contain">
+  <view class="title"> {{CompInfo.company_name}}
+    <image src="{{CompInfo.logo}}" style="float:right;width:45px;height:45px;margin-top:5px;"></image>
+  </view>
+  <view class="title_bottom"> {{CompInfo.business}}</view>
+
+  <view class="line">------------------------------------------------------------</view>
+  <view class="tips">
+    <image src="/images/pos.png" style="width:15px;height:15px;margin-right:5px"></image> {{CompInfo.address}}</view>
+  <view class="tips">
+    <image src="/images/tel.png" style="width:14px;height:14px;margin-right:5px"></image> {{CompInfo.telephone}}</view>
+  <view class="tips"> 简介:</view>
+  <view class="substrBox">
+    {{CompInfo.description}}
+  </view>
+  <view class="tips">图片:</view>
+  <view class="imgBox">
+    <block wx:for="{{CompInfo.image}}" wx:key="index">
+      <image src="{{item}}" style="float:left;margin-left:10px; width:80px;height:80px;margin-top:5px;"></image>
+    </block>
+  </view>
+</view>

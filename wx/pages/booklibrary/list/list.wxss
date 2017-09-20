@@ -1,0 +1,31 @@
+.box {
+  width: 100%;
+  height: 65px;
+  border-bottom: #efefef 1px solid;
+}
+
+.HeaderImg {padding-left: 8px;
+  float: left;
+  width: 50px;
+}
+
+.box image {
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.ContentBox {
+  width:75%;
+  float: left;
+}
+
+.ContentBox .title {
+   margin-top: 5px;
+  font-size: 13pt;
+}
+
+.ContentBox .info {
+  font-size: 10pt;
+  color: gray;
+}

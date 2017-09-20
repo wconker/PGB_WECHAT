@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "收支明细",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "backgroundColor":"#e0e0e0"
+}

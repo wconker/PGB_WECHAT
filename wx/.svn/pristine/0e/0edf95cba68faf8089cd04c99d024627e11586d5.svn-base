@@ -1,0 +1,38 @@
+<view class="weui-cells__title">上传图信息</view>
+<view class="weui-cells weui-cells_form">
+
+  <!--正面-->
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <view class="weui-uploader">
+        <view class="weui-uploader__hd">
+          <view class="weui-uploader__title">营业执照</view>
+        </view>
+        <view class="section section_gap" bindtap="chooseImage_front">
+          <view class="section__ctn" style="width:100%;">
+            <image style='width:100%' src="{{files}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!--背面-->
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <view class="weui-uploader">
+        <view class="weui-uploader__hd">
+          <view class="weui-uploader__title">公司照片</view>
+        </view>
+        <view class="section section_gap" bindtap="chooseImage_back">
+          <view class="section__ctn" style="width:100%;">
+            <image style='width:100%' src="{{files_gs}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="btn_buttom">
+  <button class="weui-btn" type="primary" bindtap="bindOk">提交</button>
+</view>

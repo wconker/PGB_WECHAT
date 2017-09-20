@@ -1,0 +1,30 @@
+<view id="menus">
+  <view class="content" bindtap="" wx:if="{{chakan==false}}">
+    <view class="content" bindtap="">
+      <view class="view">
+        <text>全部选择</text>
+      </view>
+      <view class="right">
+        <view class="body-view">
+          <switch  bindchange="choose" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view id="menus" wx:for="{{plist}}" wx:key="{{index}}">
+  <view class="content" data-select="{{item}}" data-in="{{index}}" bindtap="bindOk">
+    <view class="view">
+      <text>{{item.xm}}-{{item.bm}}</text>
+    </view>
+    <view class="right">
+      <view class="weui-cell__ft" wx:if="{{item.select=='ok'}}" style="float:left; margin-top:10px; margin-right:20px; ">
+        <icon type="success_no_circle" size="25"></icon>
+      </view>
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+</view>
+ <view class="weui-btn-area" wx:if="{{chakan==false}}">
+  <button class="weui-btn" type="primary" bindtap="bindsubmit">确定</button>
+</view> 

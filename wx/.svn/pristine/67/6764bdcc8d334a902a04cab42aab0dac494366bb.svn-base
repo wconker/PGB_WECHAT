@@ -1,0 +1,247 @@
+<view class="weui-navbar navbar_yyxj">
+  <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+      <view class="weui-navbar__title">{{item}}</view>
+    </view>
+  </block>
+  <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+</view>
+<view class="weui-tab__panel">
+  <view class="weui-tab__content" hidden="{{activeIndex != 0}}" style="background:#FFFFFF">
+    <view scroll-y="true" style="height: {{sHeight}}px;" bindscrolltolower="loadMore" bindscrolltoupper="refresh" id="0">
+      <view class="weui-cells__title">正在招标的信息
+          <view style="float:right;color:#ff7a00">{{local}}
+              <view style="color:#888;float:right;" bindtap="changeCity">[切换]</view>
+            </view>
+      </view>
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text" bindtap="bindDetail" wx:for="{{zbList}}" wx:key="zbid" id="{{item.zbid}}">
+            <view wx:if="{{item.zt>0}}">
+                    <view class="weui-media-box__title weui-media-box__title_in-textold">
+                      {{item.bdw}}
+                    </view>
+                    <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.xxsm!=''}}">
+                      {{item.xxsm}}
+                    </view>
+                    <view class="weui-media-box__info">
+                      <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.zblbmc}}</view>
+                      <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.zbfw}}</view>
+                    </view>
+                    <view class="weui-media-box__info">
+                        <view class="weui-media-box__info__meta list-graybg-yyxj" >{{item.ztms}}</view>
+                        <view class="weui-media-box__info__meta_black list-reward-line-yyxj" style="margin-top:2px;margin-left:30px;">
+                            <image class="redbag" src="/images/graybag.png"></image>
+                            <span class=" list-reward-yyxj" style="color:#b2b2b2;">¥{{item.bc}}</span> 
+                        </view>
+                    </view>
+                      <view class="shallowgray" style="line-height:24px;font-size:10pt;padding-left:0">阅读次数：{{item.ydcs}}</view>
+
+              <!--<view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta list-gray-yyxj" style="margin-left:0px;font-size:10pt;">{{item.zbsj}}</view>
+                <view class="weui-media-box__info__meta list-gray-yyxj" style="margin-left:0px;font-size:10pt;"> 至 {{item.zbyxsjtime}}</view>
+              </view>-->
+            </view>
+            <view wx:else>
+                    <view class="weui-media-box__title weui-media-box__title_in-text{{item.new}}">
+                      {{item.bdw}}
+                    </view>
+                    <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.xxsm!=''}}">
+                      {{item.xxsm}}
+                    </view>
+                    <view class="weui-media-box__info">
+                      <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.zblbmc}}</view>
+                      <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.zbfw}}</view>
+                     
+                    </view>
+                    <view class="weui-media-box__info">
+                       <view class="weui-media-box__info__meta list-orangebg-yyxj">{{item.ztms}}</view>
+                       <view class="weui-media-box__info__meta_black list-reward-line-yyxj" style="margin-left:30px;">
+                          <image class="redbag" src="/images/redbag.png"></image>
+                          <span class="list-reward-yyxj">¥{{item.bc}}</span> 
+                      </view>
+                    </view>
+                    <view class="shallowgray" style="line-height:24px;font-size:10pt;padding-left:0;">阅读次数：{{item.ydcs}}</view>
+              
+              <!--<view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta list-deepblue-yyxj" style="margin-left:0px;font-size:10pt;">{{item.zbsj}}</view>
+                <view class="weui-media-box__info__meta list-deepblue-yyxj" style="margin-left:0px;font-size:10pt;"> 至 {{item.zbyxsjtime}}</view>
+              </view>-->
+            </view>
+          </view>
+        </view>
+      </view>
+      <view style="clear:both;" bindtap="getMoreInfo">
+        <view style="font-size:11pt;color:#586C94;padding:15px;">
+          <view class="weui-cell__bd">查看更多</view>
+          <view class="weui-cell__ft_in-access"></view>
+        </view>
+      </view>
+      <view class="space"></view>
+    </view>
+  </view>
+  <view class="weui-tab__content" hidden="{{activeIndex != 1}}" style="background:#FFFFFF">
+    <view scroll-y="true" style="height: {{sHeight}}px;" bindscrolltolower="loadMore" bindscrolltoupper="refresh" id="1">
+      <view class="weui-cells__title">我的招标记录</view>
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text" wx:for="{{myzbList}}" wx:key="zbid">
+              <view bindtap="bindMyDetail" id="{{item.zbid}}">
+                  <view class="weui-media-box__title weui-media-box__title_in-text{{item.new}}">
+                    {{item.bdw}}
+                  </view>
+                  <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.xxsm!=''}}">
+                    {{item.xxsm}}
+                  </view>
+                  <view class="weui-media-box__info">
+                    <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.zblbmc}}</view>
+                    <view class="weui-media-box__info__meta_yyxj list-grayline-yyxj">{{item.zbfw}}</view>
+                  </view>
+                  <view class="weui-media-box__info">
+                      <view class="weui-media-box__info__meta list-orangebg-yyxj" >{{item.ztms}}</view>
+                      <view class="weui-media-box__info__meta_black list-reward-line-yyxj" style="margin-left:30px;">
+                        <image class="redbag" src="/images/redbag.png" style="margin-top:2px;"></image>
+                        <view class="weui-media-box__info__meta" style="color:#e64340;font-size:12pt;line-height:24px;margin-left:5px;">¥{{item.bc}}</view>
+                        <view class="weui-media-box__info__meta list-blue-yyxj">{{item.dkyh}}</view>
+                    </view>
+                 </view>
+                 <view class="weui-media-box__info" style="clear:both;">
+                      <view class="weui-media-box__info__meta shallowgray" style="margin-left:0px;font-size:10pt;">{{item.zbsj}}</view>
+                      <view class="weui-media-box__info__meta shallowgray" style="margin-left:0px;font-size:10pt;"> 至 {{item.zbyxsjtime}}</view>
+                  <view class="weui-media-box__info__meta weui-media-box__info__meta_extra_yy shallowgray" style="margin-top:2px;font-size:10pt;padding-left:0;">阅读次数：{{item.ydcs}}</view>
+                </view>
+            </view>
+            
+            <view class="weui-media-box__info">
+              <view style="color:#888888;font-size:10pt; display:block;float:left;color: #576b95;" wx:if="{{item.ztms=='已交报告'||item.zt==4}}" bindtap="updownTask" id="{{item.zbid}}">查看附件</view>
+              <view style="color:#888888;font-size:10pt; display:block;float:left;margin-left:10pt;" wx:if="{{item.ztms=='已交报告'||item.zt==4}}" bindtap="sendTask" id="{{item.zbid}}">发送附件至邮箱</view>
+            </view>
+            <view class="weui-cells__title_yyxj">
+              投标信息
+              <label wx:if="{{item.tbinfo.length==0}}">：无</label>
+            </view>
+            <view class="weui-cells_after-title" wx:for="{{item.tbinfo}}" wx:key="bjid" wx:for-item="tbitem">
+              <navigator url="/pages/task/answerdetail/answerdetail?tbid={{tbitem.tbid}}&fromPage=myZbList" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd" style="font-size:14px;">{{tbitem.nc}}: ¥{{tbitem.tbj}}</view>
+                <view class="weui-cell__ft" wx:if="{{tbitem.zbbz==1}}">
+                  <icon type="success" size="25"></icon>
+                </view>
+                <view class="weui-cell__ft" wx:if="{{tbitem.zbbz==-1}}">
+                  <icon type="cancel" size="25"></icon>
+                </view>
+                <view class="weui-cell__ft" style="font-size:14px;margin-left:15px;">{{tbitem.tbsj}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </navigator>
+            </view>
+            <view style="text-align:right; margin-top:10px;height:20px" wx:if="{{item.zt==1 || item.zt==0}}">
+              <form bindsubmit="bindCloseZb" report-submit="true">
+                <button class="weui-btn mini-btn" type="primary" size="mini" formType="submit" id="{{item.zbid}}" style="width:30px;height:25px;line-height:25px;padding:0px;" wx:if="{{item.zt==4}}">结案</button>
+              </form>
+              <form bindsubmit="bindEndZb" report-submit="true">
+                <button class="weui-btn mini-btn" type="warn" size="mini" formType="submit" id="{{item.zbid}}" wx:if="{{item.zt==0}}" style="width:60px;height:25px;line-height:25px;padding:0px;">终止招标</button>
+              </form>
+            </view>
+          </view>
+        </view>
+      <view style="clear:both;" bindtap="getMoreInfo">
+            <view style="font-size:11pt;color:#586C94;padding:15px;border-top:solid 1px #e5e5e5;">
+              <view class="weui-cell__bd">查看更多</view>
+              <view class="weui-cell__ft_in-access"></view>
+            </view>
+      </view>
+        <view class="space"></view>
+      </view>
+    </view>
+  </view>
+  <view class="weui-tab__content" hidden="{{activeIndex != 2}}" style="background:#FFFFFF">
+    <view scroll-y="true" style="height: {{sHeight}}px;" bindscrolltolower="loadMore" bindscrolltoupper="refresh" id="2">
+      <view class="weui-cells__title">我的投标记录</view>
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text" wx:for="{{mytbList}}" wx:key="title">
+            <view class="weui-media-box__title list-title-yyxj weui-media-box__title_in-text" id="{{item.zbid}}" bindtap="bindMyTbDetail">
+              {{item.bdw}}
+            </view>
+            <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.xxsm!=''}}">
+              {{item.xxsm}}
+            </view>
+            <view id="{{item.tbid}}" bindtap="bindAnswerDetail">
+               <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta list-grayline-yyxj" >招标价：<span style="margin-right:5px;">{{item.bc}}</span>元</view>
+                <view class="weui-media-box__info__meta list-orangebg-yyxj" style="margin-left:10px;">{{item.ztms}}</view>
+              </view>
+              <view class="weui-media-box__info">
+                  <view class="weui-media-box__info__meta_black list-grayline-yyxj" >投标价：<span style="color:#ff7a00;font-weight:bold;margin-right:5px;">{{item.tbj}}</span>元</view>
+                  <view class="weui-cell__ft" wx:if="{{item.zbbz==1}}" style="disaply:block;float:left;margin-left:10px;">
+                    <icon type="success" size="25"></icon>
+                  </view>
+              </view>
+              <view class="weui-media-box__info" style="clear:both;">
+                <view class="weui-media-box__info__meta shallowgray" style="height:24px;line-height:24px;font-size:10pt;">{{item.tbsj}}</view>
+               
+                <view class="weui-cell__ft" wx:if="{{item.zbbz==-1}}">
+                  <icon type="cancel" size="25"></icon>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+     <view class="weui-panel__ft" style="clear:both;" bindtap="getMoreInfo">
+        <view class="weui-cell weui-cell_access weui-cell_link">
+          <view class="weui-cell__bd">查看更多</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+      </view>
+      <view class="space"></view>
+    </view>
+  </view>
+  <view class="weui-tab__content" hidden="{{activeIndex != 3}}" style="background:#FFFFFF">
+    <view scroll-y="true" style="height: {{sHeight}}px;" bindscrolltolower="loadMore" bindscrolltoupper="refresh" id="3">
+      <view class="weui-cells__title">我的中标记录、待查勘任务、待评估任务等。</view>
+      <view class="weui-panel weui-panel_access">
+        <view class="weui-panel__bd">
+          <view class="weui-media-box weui-media-box_text" wx:for="{{myTaskList}}" wx:key="title" bindtap="bindTask" id="{{item.zbid}}">
+            <view class="weui-media-box__title list-title-yyxj weui-media-box__title_in-text ">
+              {{item.bdw}}
+            </view>
+            <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.xxsm!=''}}">
+              {{item.xxsm}}
+            </view>
+            <view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta list-grayline-yyxj">招标价：<span style="margin-right:5px;">{{item.bc}}</span>元</view>
+                <view class="weui-media-box__info__meta list-orangebg-yyxj" style="color:#fff;margin-left:10px;">{{item.ztms}}</view>
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta_black list-grayline-yyxj">投标价：<span style="color:#ff7a00;font-weight:bold;margin-right:5px;">{{item.tbj}}</span>元</view>
+               
+              </view>
+              <view class="weui-media-box__info">
+                <view class="weui-media-box__info__meta shallowgray " style="font-size:10pt;">{{item.tbsj}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view style="clear:both;" bindtap="getMoreInfo">
+        <view style="font-size:11pt;color:#586C94;padding:15px;border-top:solid 1px #e5e5e5;">
+          <view class="weui-cell__bd">查看更多</view>
+          <view class="weui-cell__ft_in-access"></view>
+        </view>
+    </view>
+    <view class="space"></view>
+  </view>
+</view>
+<view class="oper" style="display:block;border:0;height:auto; background:transparent;">
+  <view style="width:60px;display:block;float:right;margin-right:20px;margin-bottom:20px;">
+    <button size="mini" type="primary" bindtap="bindNew" style="width:60px;height:60px;line-height:24px; display:block;padding:5px;font-size:14pt;">发起招标</button>
+
+    <!--<button size="mini" type="default"  bindtap="bindMyrecord" style="width:60px;padding:0px;height:30px;line-height:30px; display:block;margin-top:10px;" >查勘工具</button>-->
+  </view>
+</view>
+<modal hidden="{{hidden}}" title="发送附件至邮箱" confirm-text="发送" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}" text="" style="background:#ff0000;">
+  <input type="text" placeholder="请输入邮箱地址" value="{{email}}" style="border-color: #bbbbbb; border-style: solid; border-top-width: 0px;border-right-width: 0px; border-bottom-width: 1px;border-left-width: 0px;font-size:20px;color:#353535" bindinput="bindinput"
+  />
+</modal>

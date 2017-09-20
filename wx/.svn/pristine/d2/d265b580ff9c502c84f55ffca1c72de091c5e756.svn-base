@@ -1,0 +1,83 @@
+<form bindsubmit="bindOk" report-submit="true">
+  <view class="weui-cells__title">设置头像</view>
+  <view>
+    <image id="circle" src="{{files}}" bindtap="chooseImage"></image>
+  </view>
+  <view class="weui-cells__title">个人签名</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <textarea class="weui-textarea" bindblur="bzBindblur" disabled="{{isSearchVisible?true:false}}" placeholder="{{isSearchVisible?' ':wylxs[wylxIndex].bzts}}" style="height:80rpx;" value="{{isSearchVisible?' ':bz}}" />
+      </view>
+    </view>
+  </view>
+  <view class="weui-cells__title">认证信息</view>
+  <view class="weui-cells weui-cells_form">
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <view class="weui-label">真实姓名</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="text" value="{{userInfo.xm}}" bindinput="setxm" placeholder="请输入真实姓名" />
+      </view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <view class="weui-label">手机号码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="digit"  value="{{userInfo.fdcgjszch}}" bindinput="setfczch" placeholder="请输入手机号码" />
+      </view>
+    </view>
+
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <view class="weui-label">所属公司</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="digit" value="{{userInfo.tdgjszch}}" bindinput="settdzch" placeholder="请输入公司名称" />
+      </view>
+    </view> 
+    <!--<view class="weui-cell " bindtap="choseCity">
+     <view class="weui-cell__hd">
+          <view class="weui-label">所在城市</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="weui-cell weui-cell_input" bindtap="bindSelectS" data-bt="{{item.bt}}" data-options="{{item.xxlist}}" data-item="{{item}}" id="{{index}}"style="padding-left:0px;">
+           {{citys.dqmc}}
+            <view class="weui-cell__bd">
+              <view style="display:block;float:left;">{{item.sjxz}}</view>
+              <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+      -->
+
+     
+  <!-- <view class="weui-cell">
+    <view class="weui-cell__hd">
+      <view class="weui-label">资产估价师</view>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" type="digit" value="{{userInfo.fdcgjszch}}" bindinput="setfczch" placeholder="请输入资产估价师注册号" />
+    </view>
+  </view>
+  </view>
+    <view class="weui-cells__title">邀请人手机</view>
+  <view class="weui-cells weui-cells_form">
+    <view class="weui-cell">
+      <view class="weui-cell__hd">
+        <view class="weui-label">手机号码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="text" bindinput="setnc" bindinput="setSJHM" placeholder="请输入邀请人手机号" />
+    
+      </view> <icon type="warn" style="float:right" wx:if="{{warn==1}}"></icon>
+    </view> -->
+  </view>
+  <view class="weui-cells__tips" style="margin:24rpx;font-size:28rpx">温馨提示:如果您是国家认证的估价师，填写信息后系统将自动认证并记录</view>
+  <view class="weui-btn-area">
+    <button class="weui-btn" type="primary" formType="submit">提交</button>
+  </view>
+</form>

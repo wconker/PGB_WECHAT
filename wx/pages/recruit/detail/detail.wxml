@@ -1,0 +1,115 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+    <view class="weui-cells__title">岗位详情</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">公司名称</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.gsmc}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input" bindtap="bindTel" id="{{info.lxsj}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">联系电话</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.lxdh}}</view>
+        </view>
+      </view>
+
+       <view class="weui-cell weui-cell_input" bindtap="bindTel" id="{{info.lxsj}}">
+        <view class="weui-cell__hd">
+          <view class="weui-label">企业邮箱</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.qyyx}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">招聘职位</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.gw}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">工作性质</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.gzxz}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">工作地点</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.gzdd}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">资格要求</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.zgyq}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">岗位要求</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.gwyq}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">薪酬标准</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.xcbz}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">备注</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.bz}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">发布时间</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.fbsj}}</view>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">阅读次数</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.ydcs}}</view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>

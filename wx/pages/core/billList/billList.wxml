@@ -1,0 +1,43 @@
+<view class="weui-navbar navbar_yyxj ">
+  <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+      <view class="weui-navbar__title">{{item}}</view>
+
+      <!--<view class="weui-badge" style="margin-left: 5px;">8</view>-->
+    </view>
+  </block>
+  <view class="weui-navbar__slider" style="width:125px;left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+</view>
+<view class="weui-cells__title" style="background:#fff;margin-top:60px;font-size:20px;text-align:center">{{showInfo?'暂无信息':''}}</view>
+
+<!--text.wxml-->
+<view class="grid">
+  <view class="weui-panel_bg">
+    <view class="weui-media-box" wx:for="{{bill}}" wx:key="title" wx:for-index="index" id="{{item.rwid}}" bindtap="bindDetail" data-sm="{{item.sm}}">
+      <view style="padding-top:5px;">
+        <view style="width:30%;color:#b2b2b2;font-size:11pt;dispaly:block;float:left;margin-top:0px;" data-sm="{{item.sm}}">{{fromPage=='bill'?item.czsj:(fromPage=='getbill'?item.txsj:item.sj)}}</view>
+        <view class="flex-wrp" style="flex-direction:column" data-sm="{{item.sm}}">
+          <view class="flex-wrp" style="height:25px;flex-direction:row;" data-sm="{{item.sm}}">
+            <view style="line-height:18px;font-size:14pt;color:#35353;" data-sm="{{item.sm}}">{{fromPage=='bill'?(item.istkbz?'-':'+'):(fromPage=='getbill'?'-':(item.lx==1?'+':'-'))}}{{fromPage=='bill'?item.czje:(fromPage=='getbill'?item.txje:item.je)}}元</view>
+            <view style="line-height:18px;font-size:11pt;color:#ff7a00;margin-top:0px;margin-left:40px;" data-sm="{{item.sm}}">{{fromPage=='bill'?item.czlx:(fromPage=='getbill'?'':(item.sm=='xj'?'询价':(item.sm=='tb'?'投标':(item.sm=='bj'?'报价':'招标'))))}}
+            </view>
+          </view>
+          <text style="line-height:18px;color:#888;font-size:11pt;margin-top:5px;" data-sm="{{item.sm}}">{{fromPage=='bill'?item.mc:(fromPage=='getbill'?'提现':item.bz)}}</text>
+        </view>
+        <view style="height:30px" wx:if="{{fromPage=='bill'}}">
+          <view style="float:right;">
+          <form bindsubmit="listenFormSubmit" report-submit="true">
+            <button size="mini" formType="submit" bindtap="rePay" wx:if="{{item.zt==-1}}" data-select="{{index}}">退款</button>
+            </form>
+            <!--<button style="margin-left:10px" size="mini" bindtap="bindRefundInfo" wx:if="{{item.tklist!=0}}" data-select="{{index}}">退款详情</button>-->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="space"></view>
+</view>
+<modal hidden="{{hidden}}" title="退款申请" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" no-cancel="{{nocancel}}" text="" style="background:#ff0000;">
+  <input type="digit" placeholder="可输入金额" value="{{money}}" style="border-color: #bbbbbb; border-style: solid; border-top-width: 0px;border-right-width: 0px; border-bottom-width: 1px;border-left-width: 0px;font-size:20px;color:#353535" bindinput="bindinput"
+  />
+</modal>

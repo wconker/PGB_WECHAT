@@ -1,0 +1,58 @@
+<view id="menus">
+  <view class="content" id="smrz" bindtap="tocerTap">
+    <view class="view">
+      <text>实名认证</text>
+    </view>
+    <view class="right">
+       <view class="weui-cell__ft" wx:if="{{smrzbz==1}}" style="float:left; margin-top:10px;    margin-top:5px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{smrzbz==0}}" style="float:left; margin-top:10px;    margin-top:5px; ">
+        <icon type="cancel" size="25"></icon>
+      </view>
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+  <view class="content" bindtap="tofcpgsTap">
+    <view class="view">
+      <text>房地产评估师认证</text>
+    </view>
+    <view class="right">
+       <view class="weui-cell__ft" wx:if="{{fdcgjsbz==1}}" style="float:left; margin-top:10px;    margin-top:5px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{fdcgjsbz==0}}"  style="float:left; margin-top:10px;    margin-top:5px; ">
+        <icon type="cancel" size="25"></icon>
+      </view>
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+  <view class="content" bindtap="totdpgsTap">
+    <view class="view">
+      <text>土地评估师认证</text>
+    </view>
+    <view class="right">
+       <view class="weui-cell__ft" wx:if="{{tdgjsbz==1}}" style="float:left; margin-top:10px;    margin-top:5px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft" wx:if="{{tdgjsbz==0}}"  style="float:left; margin-top:10px;    margin-top:5px; ">
+        <icon type="cancel" size="25"></icon>
+      </view>
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>
+  <!--<view class="content" bindtap="tozcpgsTap">
+    <view class="view">
+      <text>资产评估师认证</text>
+    </view>
+    <view class="right">
+      <view class="weui-cell__ft" wx:if="{{zcgjsbz==1}}" style="float:left; margin-top:10px;    margin-top:5px; ">
+        <icon type="success" size="25"></icon>
+      </view>
+      <view class="weui-cell__ft"  wx:if="{{zcgjsbz==0}}" style="float:left; margin-top:10px;    margin-top:5px; ">
+        <icon type="cancel" size="25"></icon>
+      </view>
+      <image src="/images/rightjian.png" style="width:14px;height:14px"></image>
+    </view>
+  </view>-->
+</view>

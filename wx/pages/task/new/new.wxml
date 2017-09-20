@@ -1,0 +1,241 @@
+<view class="tips" wx:if="{{tipValue!=''}}">{{tipValue}}</view>
+<form bindsubmit="bindOk" report-submit="true">
+  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+      <view class="weui-cells__title">标的物信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">招标类别</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindZblbChange" value="{{zblbIndex}}" range="{{zblbs}}" range-key="name">
+              <view class="weui-select weui-select_in-select-after" bindtap="tipDisappear">{{zblbs[zblbIndex].name}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">附件上传</view>
+                <view class="weui-uploader__info">{{files.length}}</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files" id="uploaderFiles">
+                  <block wx:for-items="{{files}}" wx:key="{{index}}">
+                    <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                      <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                    </view>
+                  </block>
+                </view>
+                <view class="weui-uploader__input-box">
+                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">标的物</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindblur="bdwBindblur" value="{{bdw}}" placeholder="请输入标的物信息" />
+          </view>
+
+        </view>
+        <button style="background:transition;border:none;width:140px;margin-bottom:5px;" bindtap="mapSearch">地图搜索</button>
+        <view class="weui-cell weui-cell_select" bindtap="chooseCity">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">所在城市</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-cell weui-cell_input" bindtap="bindSelectS" data-bt="{{item.bt}}" data-options="{{item.xxlist}}" data-item="{{item}}" id="{{index}}" style="padding-left:0px">
+              {{citys.dqmc==null?'请选择所在城市':citys.dqmc}}
+              <view class="weui-cell__bd">
+                <view style="display:block;float:left;"></view>
+                <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">现场联系人</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="lxrBindblur" value="{{lxr}}" placeholder="请输入联系人姓名" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">联系电话</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindinput="lxdhBindblur" type="number" value="{{lxdh}}" placeholder="请输入联系电话" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">贷款银行</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" bindblur="dkyhBindblur" value="{{dkyh}}" placeholder="请输入贷款银行" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_select" bindtap="goselectcomp">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">评估机构</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-cell weui-cell_input" data-bt="{{item.bt}}" data-options="{{item.xxlist}}" data-item="{{item}}" id="{{index}}" style="padding-left:0px;">
+              <view class="weui-cell__bd">
+                <view style="display:block;float:left;">{{pgjg}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">查勘表</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindKcbmbChange" value="{{kcbmbIndex}}" range="{{kcbmbs}}" range-key="MBMC">
+              <view class="weui-select weui-select_in-select-after" style="font-size:10pt;" bindtap="tipDisappear">{{kcbmbs[kcbmbIndex].MBMC}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cells__title">备注信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea class="weui-textarea" disabled="{{isSearchVisible?true:false}}" bindblur="xxsmBindblur" placeholder="{{isSearchVisible?' ':'请输入查勘交待信息'}}" style="height: 3.3em" value="{{isSearchVisible?' ':xxsm}}" />
+          </view>
+        </view>
+      </view>
+      <view class="weui-cells__title">招标规则设置</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">招标范围</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindZbfwChange" value="{{zbfwIndex}}" range="{{zbfws}}">
+              <view class="weui-select weui-select_in-select-after" bindtap="tipDisappear">{{zbfws[zbfwIndex]}}</view>
+            </picker>
+          </view>
+        </view>
+
+        <!--选择内部-->
+        <view wx:if="{{zbfws[zbfwIndex]=='内部'}}" class="weui-cell weui-cell_select" bindtap="gogroup">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">分发至</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="weui-cell weui-cell_input" data-bt="{{item.bt}}" data-options="{{item.xxlist}}" data-item="{{item}}" id="{{index}}" style="padding-left:0;">
+              {{group.xm}}
+              <block wx:for="{{group}}" wx:key="{{index}}" wx:if="{{group.length>0}}">
+                {{item.xm}}
+              </block>
+              <view class="weui-cell__bd">
+                <view style="display:block;float:left;"></view>
+                <view class="weui-cell__ft weui-cell__ft_in-access" style="padding-top:20px;"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!--选择内部-->
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">有效时间</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindYxsjChange" value="{{yxsjIndex}}" range="{{yxsjs}}" range-key="name">
+              <view class="weui-select weui-select_in-select-after">{{yxsjs[yxsjIndex].name}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">报酬(元)</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" type="digit" placeholder="" value="{{bc}}" bindinput="bcBindblur" />
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">要求完成日期</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker mode="date" value="{{bgjzrq}}" bindchange="bindDateChange">
+              <view class="weui-input">{{bgjzrq}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">要求完成时间</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker mode="time" value="{{bgjzsj}}" bindchange="bindTimeChange">
+              <view class="weui-input">{{bgjzsj}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_select" style="display:none">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">账户类型</view>
+          </view>
+          <view class="weui-cell__bd">
+            <picker bindchange="bindZhlxChange" value="{{zhlxIndex}}" range="{{zhlxjs}}" range-key="name">
+              <view class="weui-select weui-select_in-select-after">{{zhlxjs[zhlxIndex].name}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="btn_buttom">
+      <button class="weui-btn" type="primary" formType="submit">确定</button>
+    </view>
+  </view>
+</form>
+
+<!-- 遮罩层 -->
+<view class="cover" animation='{{ coverAlphaAnim }}' hidden='{{ !isSearchVisible }}' bindtap='bindCoverTap' hover='false' overflow='hidden' bindtouchmove="handletouchmove" style="overflow:hidden"></view>
+
+<!-- 搜索框以及下面的已搜索选项 -->
+<view class="search-wrapper" hidden='{{ !isSearchVisible }}'>
+
+  <!-- 过滤选项 -->
+  <view class="filter-list-wrapper">
+
+    <!-- list -->
+    <view style="width:100%">
+      <text style="margin:0 auto;font-weight: 400;font-size: 18px;">查勘信息确认</text>
+      <text class="textInfo">招标类别: {{zblbs[zblbIndex].name}}</text>
+      <text class="textInfo">标的物: {{bdw}}</text>
+      <text class="textInfo">所在城市: {{citys.dqmc}}</text>
+      <text class="textInfo">现场联系人: {{lxr}}</text>
+      <text class="textInfo">联系电话: {{lxdh}}</text>
+      <text class="textInfo">查勘表: {{kcbmbs[kcbmbIndex].MBMC}}</text>
+      <text class="textInfo" style="margin-top:8px">招标范围: {{zbfws[zbfwIndex]}}</text>
+      <text class="textInfo">有效时间: {{yxsjs[yxsjIndex].name}}</text>
+      <text class="textInfo">报酬: {{bc}}元</text>
+      <text class="textInfo">内部询价人:
+        <block wx:for="{{group}}" wx:key="{{index}}">
+          <text> {{item.xm}}</text>
+      </block>
+      </text>
+      <text class="textInfo">要求完成时间: {{bgjzrq}} {{bgjzsj}}</text>
+    </view>
+  </view>
+  <view class="weui-dialog__ft">
+    <view class="weui-dialog__btn weui-dialog__btn_default" style="width:50%;text-align:center;display:block;float:left;border-right:solid 1px #D5D5D6; " bindtap="dialogCancel">取消</view>
+    <view class="weui-dialog__btn weui-dialog__btn_primary" style="width:50%;text-align:center;display:block;float:right;" bindtap="dialogConfirm">确认</view>
+  </view>
+</view>

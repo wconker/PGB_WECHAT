@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "查勘业务",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "backgroundColor":"#ff7a00"
+}

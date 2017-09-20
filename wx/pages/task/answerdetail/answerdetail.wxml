@@ -1,0 +1,95 @@
+<form bindsubmit="bindYes" report-submit="true">
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+    <view class="weui-cells__title">标的物信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">标的物</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.bdw}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__title">投标信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">投标价(元)</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.tbj}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">投标说明</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.tbsm}}</view>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">投标时间</view>
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{info.tbsj}}</view>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="weui-uploader">
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title">附件{{index}}</view>
+              <view class="weui-uploader__info">{{files.length==0?'无附件':files.length}}</view>
+            </view>
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <block wx:for-items="{{files}}" wx:key="{{index}}">
+                  <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <block wx:if="{{fromPage=='myZbList'}}">
+      <view class="weui-cells__title">报价人信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+            <image src="/images/user.png" style="width: 50px; height: 50px; display: block" wx:if="{{info.userinfo[0].tx_img==''}}" />
+            <image src="{{info.userinfo[0].tx_img}}" style="width: 50px; height: 50px; display: block" wx:if="{{info.userinfo[0].tx_img!=''}}" />
+          </view>
+          <view class="weui-cell__bd">
+            <view>{{info.userinfo[0].nc}}</view>
+            <view style="font-size: 13px;color: #888888;">{{info.userinfo[0].title}}</view>
+            <view style="font-size: 13px;color: #888888;">投标数：{{info.userinfo[0].tbs}}笔 | 中标数：{{info.userinfo[0].kcs}}笔</view>
+          </view>
+          <view class="weui-cell__ft" style="position: relative;margin-right: 10px;">
+            <view wx:if="{{info.userinfo[0].sjhm!=''}}" bindtap="bindTel" id="{{info.userinfo[0].sjhm}}">
+              <image src="/images/tel.png" style="width: 30px; height: 30px; display: block"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <block wx:if="{{fromPage=='myZbList'}}">
+    <view class="weui-btn-area" wx:if="{{info.dtbrpj == ''&&info.zt==4}}">
+      <button class="weui-btn" type="primary" bindtap="asses">评价</button>
+    </view>
+  </block>
+  <block wx:if="{{fromPage=='myZbList'}}">
+    <view class="weui-btn-area" wx:if="{{info.zt == 0}}">
+      <button class="weui-btn" type="primary" formType="submit">中标确认</button>
+    </view>
+  </block>
+</view>
+</form>

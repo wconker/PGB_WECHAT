@@ -1,0 +1,50 @@
+#menus {
+  background: #fff;
+  margin-top: 10px;
+  height: auto;
+  width: 100%;
+}
+
+#menus .content {
+  height: 45px;
+  border-bottom: 0.5px solid #ebebeb;
+}
+
+#menus .content .view {
+  float: left;
+}
+.image{
+   width:40px;height:40px;float:left;
+   margin-left:6px;
+}
+#menus .content .view text {
+  font-size: 15px;
+  line-height: 45px;
+  padding-left: 20px;
+}
+
+#menus .content .right {
+  height: 45px;
+  float: right;
+  margin-right: 10px;
+  line-height: 45px;
+}
+
+.btn {
+  width: 70px;
+  line-height: 30px;
+  height: 30px;
+  margin-right: 10px;
+  float: left;
+  font-size: 10pt
+}
+
+#circle {
+  width: 150px;
+  height: 150px;
+  margin-left: 30%;
+  background: white;
+  -moz-border-radius: 75px;
+  -webkit-border-radius: 75px;
+  border-radius: 75px;
+}

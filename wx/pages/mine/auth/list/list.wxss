@@ -1,0 +1,25 @@
+#menus{
+    background: #ffffff;
+    margin-top:10px;
+    height:auto;
+    width:100%;
+}
+#menus .content{
+    height:45px;
+    border-bottom: 0.5px solid #ebebeb; 
+}
+#menus .content .view{
+    float: left;
+
+}
+#menus .content .view text{
+    font-size:15px;
+    line-height:45px;
+    padding-left:20px;
+}
+#menus .content .right{
+    height: 45px;
+    float: right;
+    margin-right:10px;
+    line-height: 45px;
+}

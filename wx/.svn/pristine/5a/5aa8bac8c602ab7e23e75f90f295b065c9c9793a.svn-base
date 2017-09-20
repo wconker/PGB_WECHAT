@@ -1,0 +1,187 @@
+<!--pages/tool/counter/counter.wxml-->
+<!-- <view class="tips" wx:if="{{tipValue!=''}}">{{tipValue}}</view> -->
+<form bindsubmit="bindOk" report-submit="true">
+  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd"> 
+      <view class="weui-cells__title">物业定位</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">评估总价</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" type="number" style="width:75%;float:left" bindblur="Total" value="{{total}}" placeholder="请输入总价" />
+             <view style="width:58px;float:left;margin-top:10px;">万元</view>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">评估单价</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" type="number" style="width:75%;float:left" bindblur="single" value="{{single}}" placeholder="请输入单价" />
+            <view style="width:58px;float:left;margin-top:10px;">元/㎡</view>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">快速变现率</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" type="number" style="width:75%;float:left" bindblur="Percent"  placeholder="单位为百分比（%）" />
+             <view style="width:58px;float:left;margin-top:10px;">%</view>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">购入原价</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" type="number" style="width:75%;float:left" bindblur="OriginalPrice"  placeholder="购入原价" />
+             <view style="width:58px;float:left;margin-top:10px;">万元</view>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_radio">
+          <view class="weui-cell__hd">
+            <view class="weui-label">房屋类型</view>
+          </view>
+          <view class="houseType">
+            <radio-group class="radio-group" bindchange="houseChange">
+                <label class="radio" wx:key="index" wx:for-items="{{items}}">
+                    <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                </label>
+            </radio-group>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">出售类型</view>
+          </view>
+          <view class="saleType">
+            <radio-group class="radio-group" bindchange="saleChange">
+                <label class="radio" wx:key="index" wx:for-items="{{sale}}">
+                  <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                </label>
+            </radio-group>
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">住宅年期</view>
+          </view>
+          <view class="year">
+            <radio-group class="radio-group"  bindchange="yearChange">
+                <label class="radio" wx:key="index" wx:for-items="{{years}}">
+                  <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+                </label>
+            </radio-group>
+          </view>
+        </view>
+      </view>
+
+      <view class="btn_buttom">
+        <button class="weui-btn" type="primary" formType="submit">计算</button>
+      </view>
+
+      <view class="weui-cells__title">处置税费结果</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">处置总价</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" disabled="disabled" value="{{czzj!=''?czzj+'元':'0元'}}"/>
+          </view>
+        </view> 
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">处置单价</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" disabled="disabled" value="{{czdj!=''?czdj+'元':'0元'}}" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">诉讼费</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" disabled="disabled" value="{{ssf!=''?ssf+'元':'0元'}}" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">拍卖费</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" disabled="disabled" value="{{pmf!=''?pmf+'元':'0元'}}" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">评估费</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" disabled="disabled" value="{{pgf!=''?pgf+'元':'0元'}}" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">营业税及附加</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" disabled="disabled" value="{{yys!=''?yys+'元':'0元'}}" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">个人所得税</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" disabled="disabled" value="{{grsds!=''?grsds+'元':'0元'}}" />
+          </view>
+        </view>
+        
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">印花税</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" disabled="disabled" value="{{yhs!=''?yhs+'元':'0元'}}" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">土地增值税</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" disabled="disabled" value="{{tdzzs!=''?tdzzs+'元':'0元'}}" />
+          </view>
+        </view>
+
+        <view class="weui-cell weui-cell_btn">
+          <view class="weui-cell__hd">
+            <view class="weui-label">合计</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" disabled="disabled" value="{{hj!=''?hj+'元':'0元'}}" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</form>
+

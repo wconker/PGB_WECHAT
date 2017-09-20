@@ -1,0 +1,41 @@
+page{
+    background: #ebebeb;
+}
+#header{
+    width:100%;
+    height:180px;
+    background: #fff;
+}
+#header .content{
+    padding-top:6px;
+    padding-bottom:360px;
+    text-align: center;
+}
+#header .content image{
+    width:600rpx;
+    height:300rpx;
+}
+.oper{
+  display:flex;
+  flex-direction: row;
+  background: #fff;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  border-top: 0.5px solid #ebebeb; 
+  padding: 5rpx;
+}
+
+button{
+    width: 720rpx;
+}
+.seePic{
+  width:300rpx;
+  background:#f00;
+  color:#fff;
+  height:80rpx;
+  border-radius:3px;
+  line-height:80rpx;
+  margin-top:40rpx;
+}

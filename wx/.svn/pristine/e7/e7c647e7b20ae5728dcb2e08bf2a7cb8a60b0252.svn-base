@@ -1,0 +1,30 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="weui-pay_title">提现金额</view>
+          <view class="flex-info">
+        <view class="weui-pay-label">
+          <view class="weui-pay-label">¥</view>
+        </view>
+        <view class="weui-textarea">
+          <input class="weui-input" bindinput="bindKeyInput" placeholder="0.00" type="digit" onkeyup="clearNoNum(this)"/>
+        </view>
+      </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="oper">
+    <view>
+      <button size="normal" type="primary" class="button" bindtap="bindOk">确认</button>
+    </view>
+  </view>
+
+  <view class="weui-pay_info">◆ 提现用户需要先进行实名认证;</view>
+  <view class="weui-pay_info2">◆ 提现用户的微信账户，需要至少绑定一张银行卡;</view>
+  <view class="weui-pay_info2">◆ 提现起步金额为10元，单次提现最高金额为500元; </view>
+  <view class="weui-pay_info2">◆ 每日提现次数不得超过5次。</view>
+  
+</view>

@@ -1,0 +1,10 @@
+<view style="margin-top:150px">
+  <view class="weui-cell weui-cell_vcode">
+    <view class="weui-cell__bd" style="margin: 0 auto;">
+      <input class="weui-input" style=" border:solid #d8d8d8 1px;padding:5px;height:40px;margin-right:10px" bindinput="setworld" type="text" placeholder="搜索一下" />
+    </view>
+  </view>
+</view>
+<view class="btn_buttom" style="width:50%;margin: 16px auto">
+  <button class="weui-btn" type="primary" bindtap="search" style="color:black;background:#f2f2f2" formType="submit">搜索</button>
+</view>

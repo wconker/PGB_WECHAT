@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-panel__hd">我正在招聘的岗位信息</view>
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_text" wx:for="{{records}}" wx:key="title"  id="{{item.gwid}}">
+        <view class="weui-media-box__title list-title-yyxj weui-media-box__title_in-text">{{item.gw}}</view>
+        <view class="weui-media-box__desc list-title-detail-yyxj" wx:if="{{item.bz!=''}}">{{item.bz}}</view>
+        <view class="weui-media-box__info">
+          <view class="weui-media-box__info__meta list-blue-yyxj" style="margin-left:0;font-size:11pt;color:#4848c4">{{item.gsmc}}</view>
+        </view>
+         <view class="weui-media-box__info">
+          <view class="weui-media-box__info__meta deepgray">{{item.fbsj}}</view>
+          <view class="weui-media-box__info__meta weui-media-box__info__meta_extra list-orangebg-yyxj">{{item.gzxz}}</view>
+        </view>
+        <view class="weui-media-box__info">
+          <button size="mini" type="warn"  bindtap="bindDel" id="{{item.gwid}}">删除</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="oper">
+    <view>
+      <button size="normal" type="primary" class="button" bindtap="bindNew">我要招聘</button>
+    </view>
+  </view>
+</view>

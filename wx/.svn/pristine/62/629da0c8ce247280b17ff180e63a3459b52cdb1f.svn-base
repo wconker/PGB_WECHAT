@@ -1,0 +1,14 @@
+.star-image {
+  position: absolute;
+  top: 50rpx;
+  width: 50rpx;
+  height: 50rpx;
+  src: "/images/star_off.png";
+}
+ 
+.item {
+  position: absolute;
+  top: 50rpx;
+  width: 15rpx;
+  height: 150rpx;
+}

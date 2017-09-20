@@ -1,0 +1,39 @@
+<form bindsubmit="bindOk" report-submit="true">
+<view class="weui-cells__title">上传证件</view>
+<view class="weui-cells weui-cells_form">
+
+  <!--正面-->
+  <view class="weui-cell">
+    <view class="weui-cell__bd">
+      <view class="weui-uploader">
+        <view class="weui-uploader__hd">
+          <view class="weui-uploader__title">土地评估师证件上传</view>
+           
+        </view>
+       
+            <image class="" style="width:100%;height:200px" src="{{files}}" bindtap="chooseImage_front"></image>
+        
+     
+      </view>
+    </view>
+  </view>
+
+</view>
+<view class="weui-cells__title">填写真实信息</view>
+<view class="weui-cells weui-cells_form">
+  <view class="weui-cell">
+    <view class="weui-cell__hd">
+      <view class="weui-label">估价师注册号</view>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" type="digit" bindinput="setzch" value="{{tdpgs}}" placeholder="请输入土地估价师注册号" />
+    </view>
+  </view>
+ 
+</view>
+
+<view class="btn_buttom" >
+  <button class="weui-btn" type="primary" formType="submit" >确定</button>
+</view>
+ <view class="weui-cells__tips" wx:if="{{user.tgrzyj!=null}}">{{user.tgrzyj}}</view>
+ </form>

@@ -1,0 +1,27 @@
+page,
+.page,
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-tab__content{
+    padding-top: 3px;
+}
+
+.oper{
+  display:flex;
+  flex-direction:row;
+  background: #fff;
+  height: 80rpx;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  border-top: 0.5px solid #ebebeb; 
+  padding: 5rpx;
+}
+
+.button{
+    width: 300rpx;
+}

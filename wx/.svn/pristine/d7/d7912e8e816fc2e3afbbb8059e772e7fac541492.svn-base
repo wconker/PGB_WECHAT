@@ -1,0 +1,15 @@
+<view class="page">
+  <view class="page__bd">
+    <view id="menus">
+      <view class="weui-panel__hd">行业资讯</view>
+      <view class="content" wx:for="{{news}}" wx:key="title" bindtap="bindNewsTap" id="{{item.id}}">
+        <view class="view">
+          <text>{{item.title}}</text>
+        </view>
+        <view class="right">
+          <text>{{item.fbsj}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

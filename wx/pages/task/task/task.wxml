@@ -1,0 +1,156 @@
+<form bindsubmit="bindOk" report-submit="true">
+  <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__bd">
+      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{tips}}</view>
+      <view class="weui-cells__title">任务信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">标的物</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view>{{zbinfo.bdw}}</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">招标说明</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view>{{zbinfo.xxsm}}</view>
+          </view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">招标附件</view>
+                <view class="weui-uploader__info">{{zbfiles.length==0?'无附件':zbfiles.length}}</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files" id="uploaderFiles">
+                  <block wx:for-items="{{zbfiles}}" wx:key="{{index}}">
+                    <view class="weui-uploader__file" bindtap="previewZbImage" id="{{item}}">
+                      <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                    </view>
+                  </block>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">现场联系人</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view>{{zbinfo.lxr}}</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">联系电话</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view>{{zbinfo.lxdh}}</view>
+          </view>
+          <view wx:if="{{zbinfo.lxdh!=''}}" bindtap="bindTel" id="{{zbinfo.lxdh}}">
+            <image src="/images/tel.png" style="width: 30px; height: 30px; display: block"></image>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">贷款银行</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view>{{zbinfo.dkyh}}</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">评估机构</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view>{{zbinfo.pgjg}}</view>
+          </view>
+        </view>
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">查勘表模板</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view>{{zbinfo.kcbmbmc}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cells__title">查勘信息</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+          <view class="weui-cell__hd">
+            <view class="weui-label">现场签到时间</view>
+          </view>
+          <view class="weui-cell__bd">
+            <view>{{zbinfo.qdsj}}</view>
+          </view>
+          <view class="weui-cell__ft" wx:if="{{zbinfo.qdsj==''}}">
+            <view class="weui-vcode-btn" bindtap="bindQd">现场签到</view>
+          </view>
+          <view class="weui-cell__ft" wx:if="{{zbinfo.qdsj!=''}}">
+            <view class="weui-vcode-btn" bindtap="bindOpenLocation">查看位置</view>
+          </view>
+        </view>
+
+        <!--<view class="weui-cell weui-cell_input weui-cell_vcode">-->
+
+        <!--<navigator url="/pages/task/record/record?zbid={{zbid}}&mbbh={{zbinfo.kcbmb}}&bdw={{zbinfo.bdw}}" class="weui-cell__bd_sxd" hover-class="weui-cell_active">
+          <view class="weui-cell_sxd">
+            <view class="weui-cell__bd">查勘记录表</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+          </view>
+        </navigator>
+        <view class="weui-cell__ft" wx:if="{{zbinfo.qdsj!=''}}">
+          <view class="weui-vcode-btn" bindtap="updownTask">下载附件</view>
+        </view>-->
+        <navigator url="/pages/task/record/record?zbid={{zbid}}&mbbh={{zbinfo.kcbmb}}&bdw={{zbinfo.bdw}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">查勘记录表</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+
+        <!--</view>-->
+        <view class="weui-cell" wx:if="{{false}}">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">现场查勘相片</view>
+                <view class="weui-uploader__info">{{ckfiles.length==0?'无附件':ckfiles.length}}</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files" id="uploaderFiles">
+                  <block wx:for-items="{{ckfiles}}" wx:key="{{index}}">
+                    <view class="weui-uploader__file" bindtap="previewCkImage" id="{{item}}">
+                      <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                    </view>
+                  </block>
+                </view>
+                <view class="weui-uploader__input-box">
+                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-cells__title" wx:if="{{false}}">重要披露事项</view>
+      <view class="weui-cells weui-cells_after-title" wx:if="{{false}}">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <textarea class="weui-textarea" bindinput="tbsmBindblur" placeholder="请输入需要披露的重要事项" style="height: 3.3em" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" formType="submit">提交</button>
+    </view>
+  </view>
+</form>
